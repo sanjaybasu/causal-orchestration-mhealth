@@ -1,44 +1,55 @@
-# Causal Orchestration of Frontier Large Language Model Agents
-## An Embedded Micro-Randomized Trial
+# Causal Orchestration of Frontier Large Language Models for Automated Care Plan Generation
 
-This repository contains the replication code for the manuscript "Causal Orchestration of Frontier Large Language Model Agents Prevents Performance Degradation in Mobile Health Allocation: An Embedded Micro-Randomized Trial".
+This repository contains the reproduction code for the study **"Causal Orchestration of Frontier Large Language Agents for Automated Care Plan Generation: Resolving the Quality-Efficiency-Equity Paradox"**.
 
-### Repository Structure
+## Overview
 
-- `src/`: Source code for the multi-agent system and statistical analysis.
-  - `run_full_analysis.py`: Main execution script. Orchestrates the agents and computes results.
-  - `xlearner.py`: Implementation of the X-Learner metalearner for Heterogeneous Treatment Effect (HTE) estimation.
-  - `fairness_metrics.py`: Modules for calculating Algorithmic Fairness metrics (Sensitivity, Calibration, Equalized Odds).
-  - `propensity_score_analysis.py`: Propensity score estimation and Inverse Probability Weighting (IPW) logic.
-  - `multi_agent_llm_system.py`: (Legacy) Standalone implementation of agent logic.
-- `data/`:
-  - `synthetic_cohort.csv.gz`: De-identified synthetic dataset matching the statistical properties of the Medicaid cohort (N=127,801).
-- `results/`: Directory where analysis outputs (JSON results, figures) are saved.
+The goal of this project is to evaluate a **Multi-Agent Generative Orchestration** system for creating clinical care plans using a **Retrospective Observational** design. The system uses a **Nash Bargaining** mechanism to negotiate between three competing objectives:
+1.  **Safety**: Maximizing clinical risk coverage (DeepSeek-V3 proxy).
+2.  **Efficiency**: Maximizing brevity and usability (Claude 3.5 Sonnet proxy).
+3.  **Equity**: Maximizing social needs integration (GPT-5.2 proxy).
 
-### Installation
+## Repository Structure
 
-Requires Python 3.10+ and standard scientific libraries.
-
-```bash
-pip install numpy pandas scikit-learn xgboost scipy
+```
+.
+├── data/
+│   └── real_world_cohort_sample.csv.gz  # Sample of de-identified profiles for reproducibility (N=127k cohort used in study)
+├── src/
+│   ├── care_plan_generator.py   # Core logic for Agent Classes and Nash Bargaining
+│   ├── run_full_analysis.py     # Main script to reproduce Table 1 (Simulation)
+│   └── generate_figures.py      # Script to generate Figure 2 (Radar Chart)
+├── results/
+│   └── generative_analysis_results.json # Output of the analysis
+└── README.md
 ```
 
-### Reproducing Results
-
-To replicate the manuscript's findings using the synthetic dataset:
+## Installation
 
 ```bash
-python src/run_full_analysis.py
+pip install numpy pandas matplotlib scipy
 ```
 
-This will:
-1. Load the synthetic cohort.
-2. Simulate the three agents (Safety, Efficiency, Equity) using proxy logic derived from the frontier models.
-3. Apply Nash Bargaining Orchestration to resolve conflicts.
-4. Calculate outcomes (RRR, Contact Rate) for single-agent vs multi-agent strategies.
-5. Compute Algorithmic Fairness metrics (Sensitivity by subgroup).
-6. Save results to `results/real_analysis_results.json`.
+## Reproduction Steps
 
-### License
+1.  **Run the Retrospective Evaluation**:
+    This script executes the evaluation for the full cohort using the 5 defined strategies (Control, Safety Only, Efficiency Only, Equity Only, Nash).
+    ```bash
+    python src/run_full_analysis.py
+    ```
+    *Output:* Prints the "Table 1" metrics to valid standard output and saves `results/generative_analysis_results.json`.
 
-This code is provided for academic replication and validation purposes.
+2.  **Generate Figures**:
+    (Optional) Generate the Radar Chart (Figure 2).
+    ```bash
+    python src/generate_figures.py
+    ```
+
+## Contributors
+
+*   **Sanjay Basu, MD, PhD**
+*   **Aaron Baum, PhD**
+
+## License
+
+MIT License.
