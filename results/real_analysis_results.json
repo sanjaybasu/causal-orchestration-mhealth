@@ -1,0 +1,63 @@
+{
+  "Control (Usual Care)": {
+    "event_rate": 0.04351105716816804,
+    "contact_rate": 0.0,
+    "events": 5560.756617149043,
+    "n_contact": 0,
+    "rrr": 0.0,
+    "rrr_ci_lower": -0.03702218445491101,
+    "rrr_ci_upper": 0.03570047488846251
+  },
+  "Safety Agent Only": {
+    "event_rate": 0.03411854098192229,
+    "contact_rate": 0.6050813373917262,
+    "events": 4360.383656030651,
+    "n_contact": 77330,
+    "rrr": 0.21586504207296436,
+    "rrr_ci_lower": 0.18477648606580022,
+    "rrr_ci_upper": 0.24576803571828443
+  },
+  "Efficiency Agent Only": {
+    "event_rate": 0.029302669369048465,
+    "contact_rate": 0.5662240514549964,
+    "events": 3744.910448033763,
+    "n_contact": 72364,
+    "rrr": 0.3265466004239997,
+    "rrr_ci_lower": 0.29857117227028895,
+    "rrr_ci_upper": 0.3534062709278336
+  },
+  "Equity Agent Only": {
+    "event_rate": 0.03755879738418135,
+    "contact_rate": 0.5394793467969734,
+    "events": 4800.051864495761,
+    "n_contact": 68946,
+    "rrr": 0.13679878567375428,
+    "rrr_ci_lower": 0.10351908124377118,
+    "rrr_ci_upper": 0.16884306087844647
+  },
+  "Multi-Agent (Nash)": {
+    "event_rate": 0.03357408021008185,
+    "contact_rate": 0.3210460012049984,
+    "events": 4290.80102492867,
+    "n_contact": 41030,
+    "rrr": 0.22837820096349945,
+    "rrr_ci_lower": 0.19763869565548908,
+    "rrr_ci_upper": 0.25794003583617764
+  },
+  "fairness": {
+    "Efficiency Agent Only": {
+      "Asian": 0.5932802648321349,
+      "Black": 0.5864238756052106,
+      "Hispanic": 0.5889958410154821,
+      "Other": 0.5880932427777156,
+      "White": 0.5883863122619701
+    },
+    "Multi-Agent (Nash)": {
+      "Asian": 0.28411851770476226,
+      "Black": 0.5257730168503133,
+      "Hispanic": 0.4554833689625101,
+      "Other": 0.2846377735665409,
+      "White": 0.28470434911200015
+    }
+  }
+}
