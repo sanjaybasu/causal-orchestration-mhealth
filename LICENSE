@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 Sanjay Basu
+Copyright (c) 2026 Sanjay Basu, Aaron Baum, Waymark
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,23 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+CITATION REQUIREMENT
+
+If you use this software in academic research, please cite the paper:
+
+Basu S, Baum A. Causal Orchestration of Frontier Large Language Agents for
+Automated Care Plan Generation: Resolving the Quality-Efficiency-Equity Paradox.
+BMJ Health & Care Informatics. 2026. [In press]
+
+BibTeX:
+@article{basu2026causal,
+  title={Causal Orchestration of Frontier Large Language Agents for Automated
+         Care Plan Generation: Resolving the Quality-Efficiency-Equity Paradox},
+  author={Basu, Sanjay and Baum, Aaron},
+  journal={BMJ Health \& Care Informatics},
+  year={2026},
+  note={In press}
+}
