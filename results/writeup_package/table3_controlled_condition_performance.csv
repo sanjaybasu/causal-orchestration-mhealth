@@ -1,3 +1,0 @@
-Condition,N_pairs,Safety,Efficiency,Equity,Composite
-Nash Orchestration,200,0.777 (0.770-0.783),0.702 (0.696-0.708),0.789 (0.776-0.802),0.756 (0.751-0.762)
-Compute-Matched Baseline,200,0.752 (0.750-0.755),0.674 (0.671-0.677),0.786 (0.772-0.800),0.738 (0.733-0.743)

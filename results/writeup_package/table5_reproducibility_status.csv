@@ -1,3 +1,0 @@
-run_name,summary_exists,config_exists,results_exists,failures_exists,status,n_patients_requested,n_complete_pairs,n_results_rows,n_failures_logged,runtime_seconds,models,runtime_hours
-peerreview_legacy_n200_seed42,True,True,True,False,complete,200,200,400,0,701.8620142936707,"{'safety': 'deepseek-r1:8b', 'efficiency': 'llama3.1:8b', 'equity': 'llama3.1:8b', 'generator': 'llama3.1:8b', 'compute': 'llama3.1:8b', 'judge': 'deepseek-r1:8b'}",0.19496167063713074
-pilot_peerready_n10_20260217,True,True,True,False,complete,10,10,20,0,2308.065535068512,"{'safety': 'deepseek-r1:8b', 'efficiency': 'llama3.1:8b', 'equity': 'llama3.1:8b', 'generator': 'llama3.1:8b', 'compute': 'llama3.1:8b', 'judge': 'deepseek-r1:8b'}",0.6411293152968088

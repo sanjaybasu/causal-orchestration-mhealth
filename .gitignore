@@ -7,3 +7,10 @@ __pycache__/
 *.pyo
 .DS_Store
 *.log
+
+# Data files (patient data — not committed to repo)
+data/
+# Generated results and figures (reproduced by running the experiment)
+results/
+# Manuscript and methods documents
+docs/
