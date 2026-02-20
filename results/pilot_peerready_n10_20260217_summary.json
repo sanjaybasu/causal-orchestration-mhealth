@@ -1,0 +1,160 @@
+{
+  "timestamp_utc": "2026-02-17T20:22:14.355843+00:00",
+  "run_started_utc": "2026-02-17T19:43:46.290313+00:00",
+  "runtime_seconds": 2308.065535068512,
+  "run_name": "pilot_peerready_n10_20260217",
+  "models": {
+    "safety": "deepseek-r1:8b",
+    "efficiency": "llama3.1:8b",
+    "equity": "llama3.1:8b",
+    "generator": "llama3.1:8b",
+    "compute": "llama3.1:8b",
+    "judge": "deepseek-r1:8b"
+  },
+  "n_patients_requested": 10,
+  "n_results_rows": 20,
+  "n_complete_pairs": 10,
+  "n_failures_logged": 0,
+  "nash_summary_all_rows": {
+    "n": 10.0,
+    "safety_mean": 0.76,
+    "safety_std": 0.031622776601683784,
+    "safety_ci_low": 0.7404000000000001,
+    "safety_ci_high": 0.7796,
+    "efficiency_mean": 0.698,
+    "efficiency_std": 0.04467164151400251,
+    "efficiency_ci_low": 0.670312229735455,
+    "efficiency_ci_high": 0.7256877702645449,
+    "equity_mean": 0.764,
+    "equity_std": 0.13525284963110143,
+    "equity_ci_low": 0.6801694152869412,
+    "equity_ci_high": 0.8478305847130588,
+    "composite_mean": 0.741,
+    "composite_std": 0.049317565047579365,
+    "composite_ci_low": 0.7104326564960433,
+    "composite_ci_high": 0.7715673435039567
+  },
+  "compute_matched_summary_all_rows": {
+    "n": 10.0,
+    "safety_mean": 0.75,
+    "safety_std": 0.0,
+    "safety_ci_low": 0.75,
+    "safety_ci_high": 0.75,
+    "efficiency_mean": 0.6719999999999999,
+    "efficiency_std": 0.025298221281347056,
+    "efficiency_ci_low": 0.6563199999999999,
+    "efficiency_ci_high": 0.68768,
+    "equity_mean": 0.783,
+    "equity_std": 0.11700427342623003,
+    "equity_ci_low": 0.71048,
+    "equity_ci_high": 0.8555200000000001,
+    "composite_mean": 0.735,
+    "composite_std": 0.047434164902525694,
+    "composite_ci_low": 0.7056,
+    "composite_ci_high": 0.7644
+  },
+  "nash_summary_paired": {
+    "n": 10.0,
+    "safety_mean": 0.76,
+    "safety_std": 0.031622776601683784,
+    "safety_ci_low": 0.7404000000000001,
+    "safety_ci_high": 0.7796,
+    "efficiency_mean": 0.698,
+    "efficiency_std": 0.04467164151400251,
+    "efficiency_ci_low": 0.670312229735455,
+    "efficiency_ci_high": 0.7256877702645449,
+    "equity_mean": 0.764,
+    "equity_std": 0.13525284963110143,
+    "equity_ci_low": 0.6801694152869412,
+    "equity_ci_high": 0.8478305847130588,
+    "composite_mean": 0.741,
+    "composite_std": 0.049317565047579365,
+    "composite_ci_low": 0.7104326564960433,
+    "composite_ci_high": 0.7715673435039567
+  },
+  "compute_matched_summary_paired": {
+    "n": 10.0,
+    "safety_mean": 0.75,
+    "safety_std": 0.0,
+    "safety_ci_low": 0.75,
+    "safety_ci_high": 0.75,
+    "efficiency_mean": 0.6719999999999999,
+    "efficiency_std": 0.025298221281347056,
+    "efficiency_ci_low": 0.6563199999999999,
+    "efficiency_ci_high": 0.68768,
+    "equity_mean": 0.783,
+    "equity_std": 0.11700427342623003,
+    "equity_ci_low": 0.71048,
+    "equity_ci_high": 0.8555200000000001,
+    "composite_mean": 0.735,
+    "composite_std": 0.047434164902525694,
+    "composite_ci_low": 0.7056,
+    "composite_ci_high": 0.7644
+  },
+  "paired_statistics": {
+    "safety": {
+      "n_pairs": 10.0,
+      "nash_mean": 0.76,
+      "baseline_mean": 0.75,
+      "difference": 0.009999999999999998,
+      "t_statistic": 1.0000000000000002,
+      "p_value": 0.34343639613791355,
+      "cohens_d_paired": 0.316227766016838
+    },
+    "efficiency": {
+      "n_pairs": 10.0,
+      "nash_mean": 0.698,
+      "baseline_mean": 0.6719999999999999,
+      "difference": 0.02599999999999999,
+      "t_statistic": 1.1861831761113233,
+      "p_value": 0.26591911215978264,
+      "cohens_d_paired": 0.37510405586844114
+    },
+    "equity": {
+      "n_pairs": 10.0,
+      "nash_mean": 0.764,
+      "baseline_mean": 0.783,
+      "difference": -0.018999999999999982,
+      "t_statistic": -0.2891911068933674,
+      "p_value": 0.7789861161981136,
+      "cohens_d_paired": -0.09145025768482616
+    },
+    "composite": {
+      "n_pairs": 10.0,
+      "nash_mean": 0.741,
+      "baseline_mean": 0.735,
+      "difference": 0.005999999999999994,
+      "t_statistic": 0.22183373630122355,
+      "p_value": 0.8293951115625827,
+      "cohens_d_paired": 0.07014998685770425
+    }
+  },
+  "environment": {
+    "python_version": "3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:54:21) [Clang 16.0.6 ]",
+    "platform": "macOS-15.7.3-arm64-arm-64bit",
+    "timestamp_utc": "2026-02-17T19:43:46.310418+00:00",
+    "ollama_version": "ollama version is 0.13.1",
+    "required_model_inventory": {
+      "deepseek-r1:8b": {
+        "id": "6995872bfe4c",
+        "raw_line": "deepseek-r1:8b        6995872bfe4c    5.2 GB    2 months ago"
+      },
+      "llama3.1:8b": {
+        "id": "46e0c10c039e",
+        "raw_line": "llama3.1:8b           46e0c10c039e    4.9 GB    2 months ago"
+      }
+    },
+    "available_models": [
+      "deepseek-r1:7b",
+      "deepseek-r1:8b",
+      "deepseek-r1:latest",
+      "llama3.1:8b"
+    ]
+  },
+  "paths": {
+    "results_csv": "results/pilot_peerready_n10_20260217_results.csv",
+    "failures_csv": "results/pilot_peerready_n10_20260217_failures.csv",
+    "trace_jsonl": "results/pilot_peerready_n10_20260217_trace.jsonl",
+    "config_json": "results/pilot_peerready_n10_20260217_config.json"
+  }
+}
