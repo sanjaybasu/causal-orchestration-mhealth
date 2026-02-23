@@ -1,0 +1,41 @@
+================================================================================
+OPEN-SOURCE OLLAMA CONTROLLED EXPERIMENTS
+================================================================================
+run_name: real_cohort_n200_seed42
+cohort_path: data/real_cohort_experiment_eligible.csv.gz
+n_patients: 200
+profile: legacy_local
+ollama_base_url: http://127.0.0.1:11434
+
+model configuration:
+      safety: deepseek-r1:8b
+  efficiency: llama3.1:8b
+      equity: llama3.1:8b
+   generator: llama3.1:8b
+     compute: llama3.1:8b
+       judge: deepseek-r1:8b
+
+resume mode: 371 completed condition-jobs already present (185 complete pairs)
+progress: scanned 186/5098 cohort rows | pairs 186/200 | condition-jobs 372 | elapsed 1.4m | eta 0.1m
+progress: scanned 187/5098 cohort rows | pairs 187/200 | condition-jobs 374 | elapsed 5.1m | eta 0.4m
+progress: scanned 188/5098 cohort rows | pairs 188/200 | condition-jobs 376 | elapsed 8.7m | eta 0.6m
+progress: scanned 189/5098 cohort rows | pairs 189/200 | condition-jobs 378 | elapsed 12.7m | eta 0.7m
+progress: scanned 190/5098 cohort rows | pairs 190/200 | condition-jobs 380 | elapsed 16.7m | eta 0.9m
+progress: scanned 191/5098 cohort rows | pairs 191/200 | condition-jobs 382 | elapsed 20.4m | eta 1.0m
+progress: scanned 192/5098 cohort rows | pairs 192/200 | condition-jobs 384 | elapsed 24.0m | eta 1.0m
+progress: scanned 193/5098 cohort rows | pairs 193/200 | condition-jobs 386 | elapsed 27.6m | eta 1.0m
+progress: scanned 194/5098 cohort rows | pairs 194/200 | condition-jobs 388 | elapsed 31.3m | eta 1.0m
+progress: scanned 195/5098 cohort rows | pairs 195/200 | condition-jobs 390 | elapsed 34.9m | eta 0.9m
+progress: scanned 196/5098 cohort rows | pairs 196/200 | condition-jobs 392 | elapsed 37.9m | eta 0.8m
+progress: scanned 197/5098 cohort rows | pairs 197/200 | condition-jobs 394 | elapsed 41.5m | eta 0.6m
+progress: scanned 198/5098 cohort rows | pairs 198/200 | condition-jobs 396 | elapsed 45.0m | eta 0.5m
+progress: scanned 199/5098 cohort rows | pairs 199/200 | condition-jobs 398 | elapsed 48.8m | eta 0.2m
+progress: scanned 200/5098 cohort rows | pairs 200/200 | condition-jobs 400 | elapsed 52.7m | eta 0.0m
+
+================================================================================
+RUN COMPLETE
+================================================================================
+results_csv: results/real_cohort_n200_seed42_results.csv
+summary_json: results/real_cohort_n200_seed42_summary.json
+Nash composite mean (paired): 0.755 | Compute-matched composite mean (paired): 0.742
+Composite difference (Nash-Baseline): +0.013 | paired t=6.37, p=3.838e-10

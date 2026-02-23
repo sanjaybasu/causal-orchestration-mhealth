@@ -1,0 +1,29 @@
+{
+  "analytic_cohort_n": 5148,
+  "experiment_eligible_n": 5098,
+  "holdout_n": 50,
+  "age_mean": 40.9,
+  "age_sd": 13.1,
+  "female_pct": 69.9,
+  "race_distribution": {
+    "Black/African American": 2351,
+    "White": 2110,
+    "Hispanic": 208,
+    "Unknown": 162,
+    "Asian": 144,
+    "American Indian or Alaska Native": 67,
+    "Native Hawaiian or Other Pacific Islander": 58,
+    "Other": 48
+  },
+  "state_distribution": {
+    "VA": 3531,
+    "WA": 1617
+  },
+  "sdoh_count_mean": 0.45,
+  "charlson_proxy_mean": 0.76,
+  "ed_visits_study_period_mean": 12.13,
+  "ip_admissions_study_period_mean": 2.31,
+  "pct_any_sdoh_goal": 26.7,
+  "pct_any_clinical_goal": 56.3,
+  "study_start": "2023-04-01"
+}

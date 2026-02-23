@@ -1,0 +1,20 @@
+{
+  "cohort_n": 5098,
+  "controlled_run_name": "real_cohort_n200_seed42",
+  "ongoing_run_name": "pilot_peerready_n10_20260217",
+  "controlled_summary": {
+    "n_results_rows": 400,
+    "n_pairs": 200,
+    "condition_counts": {
+      "nash": 200,
+      "compute_matched": 200
+    }
+  },
+  "table_paths": {
+    "table1": "/Users/sanjaybasu/waymark-local/packaging/causal_orchestration_mhealth/results/writeup_package/table1_demographics.csv",
+    "table2": "/Users/sanjaybasu/waymark-local/packaging/causal_orchestration_mhealth/results/writeup_package/table2_retrospective_performance.csv",
+    "table3": "/Users/sanjaybasu/waymark-local/packaging/causal_orchestration_mhealth/results/writeup_package/table3_controlled_condition_performance.csv",
+    "table4": "/Users/sanjaybasu/waymark-local/packaging/causal_orchestration_mhealth/results/writeup_package/table4_controlled_paired_differences.csv",
+    "table5": "/Users/sanjaybasu/waymark-local/packaging/causal_orchestration_mhealth/results/writeup_package/table5_reproducibility_status.csv"
+  }
+}

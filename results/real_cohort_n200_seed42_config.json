@@ -1,0 +1,63 @@
+{
+  "timestamp_utc": "2026-02-23T19:26:41.056532+00:00",
+  "args": {
+    "n_patients": 200,
+    "cohort_path": "data/real_cohort_experiment_eligible.csv.gz",
+    "profile": "legacy_local",
+    "seed": 42,
+    "max_rounds": 3,
+    "epsilon": 0.01,
+    "min_utility": 0.7,
+    "timeout_seconds": 180,
+    "max_retries": 3,
+    "judge_retries": 4,
+    "condition_retries": 2,
+    "output_dir": "results",
+    "run_name": "real_cohort_n200_seed42",
+    "ollama_base_url": "http://127.0.0.1:11434",
+    "auto_pull_missing": false,
+    "safety_model": null,
+    "efficiency_model": null,
+    "equity_model": null,
+    "generator_model": null,
+    "compute_model": null,
+    "judge_model": null
+  },
+  "models": {
+    "safety": "deepseek-r1:8b",
+    "efficiency": "llama3.1:8b",
+    "equity": "llama3.1:8b",
+    "generator": "llama3.1:8b",
+    "compute": "llama3.1:8b",
+    "judge": "deepseek-r1:8b"
+  },
+  "environment": {
+    "python_version": "3.12.2 | packaged by conda-forge | (main, Feb 16 2024, 20:54:21) [Clang 16.0.6 ]",
+    "platform": "macOS-15.7.4-arm64-arm-64bit",
+    "timestamp_utc": "2026-02-23T19:26:41.072631+00:00",
+    "ollama_version": "ollama version is 0.13.1",
+    "required_model_inventory": {
+      "deepseek-r1:8b": {
+        "id": "6995872bfe4c",
+        "raw_line": "deepseek-r1:8b        6995872bfe4c    5.2 GB    2 months ago"
+      },
+      "llama3.1:8b": {
+        "id": "46e0c10c039e",
+        "raw_line": "llama3.1:8b           46e0c10c039e    4.9 GB    2 months ago"
+      }
+    },
+    "available_models": [
+      "deepseek-r1:7b",
+      "deepseek-r1:8b",
+      "deepseek-r1:latest",
+      "gpt-oss:20b",
+      "llama3.1:8b"
+    ]
+  },
+  "output_files": {
+    "results_csv": "results/real_cohort_n200_seed42_results.csv",
+    "failures_csv": "results/real_cohort_n200_seed42_failures.csv",
+    "trace_jsonl": "results/real_cohort_n200_seed42_trace.jsonl",
+    "summary_json": "results/real_cohort_n200_seed42_summary.json"
+  }
+}

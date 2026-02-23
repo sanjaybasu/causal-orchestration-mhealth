@@ -1,0 +1,24 @@
+{
+  "run_name": "real_cohort_n200_seed42",
+  "paired_n": 200,
+  "safety": {
+    "nash_mean": 0.813,
+    "compute_mean": 0.797,
+    "delta_mean": 0.017
+  },
+  "efficiency": {
+    "nash_mean": 0.706,
+    "compute_mean": 0.684,
+    "delta_mean": 0.022
+  },
+  "equity": {
+    "nash_mean": 0.746,
+    "compute_mean": 0.746,
+    "delta_mean": -0.0
+  },
+  "composite": {
+    "nash_mean": 0.755,
+    "compute_mean": 0.742,
+    "delta_mean": 0.013
+  }
+}

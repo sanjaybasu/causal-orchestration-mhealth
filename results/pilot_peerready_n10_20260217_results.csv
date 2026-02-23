@@ -1,0 +1,835 @@
+timestamp_utc,patient_id,condition,safety,efficiency,equity,composite,rounds_used,converged,model_safety,model_efficiency,model_equity,model_generator,model_compute,model_judge,plan
+2026-02-17T19:46:19.799808+00:00,member_96233,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 9%)
+* Hypertension not adequately managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Transportation barriers affecting medication adherence and appointment attendance
+* Housing instability contributing to stress and poor health outcomes
+
+**Actionable Clinical Actions:**
+
+1. **Diabetes Management:** Adjust diabetes medication regimen to achieve HbA1c < 8% with careful consideration of hypoglycemia risk, eGFR levels, and potential contraindications.
+	* Consider adding metformin or sulfonylurea based on eGFR levels and titrate medications to minimize hypoglycemia risk.
+2. **Hypertension Management:** Initiate hypertension management with ACE inhibitor/ARB tailored to CKD stages (<130/80 mmHg for patients with CKD).
+	* Monitor for potential contraindications (e.g., hyperkalemia, renal artery stenosis) and adjust medications as needed.
+3. **Kidney Function Monitoring:** Schedule regular kidney function monitoring (every 3 months) and screen for diabetic kidney disease (urine albumin-to-creatinine ratio).
+	* Adjust medications based on eGFR/Microalbuminuria changes, ensuring timely interventions for CKD progression or side effects.
+
+**SDOH / Access Actions:**
+
+1. **Transportation Support:**
+	* Connect patient with local transportation services (e.g., public transit, ride-sharing programs) within 2 weeks.
+	* Explore sustainable solutions (e.g., transportation vouchers) and provide a clear plan for accessing these resources.
+	* Schedule regular reviews of transportation situation every 6 weeks to ensure continued support.
+2. **Housing Stability:**
+	* Collaborate with social work team to explore housing stability options (e.g., temporary rental assistance, permanent supportive housing).
+	* Develop a specific plan for connecting patient with local housing resources and support services within 4 weeks.
+
+**Patient Education and Support:**
+
+1. Provide written materials or online resources tailored to the patient's specific needs and health literacy level.
+2. Offer regular check-ins or coaching sessions to help the patient stay on track with healthy lifestyle habits.
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointments every 4-6 weeks, adjusting frequency based on transportation situation and housing stability.
+2. Regularly review patient's transportation situation and housing stability through phone calls or in-person visits.
+3. Monitor medication adherence and refill schedules at each follow-up appointment.
+
+**Nephrology Referral:**
+
+Refer to nephrology for further evaluation and management of CKD based"
+2026-02-17T19:47:50.235365+00:00,member_96233,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension (BP > 140/90 mmHg)
+* Chronic kidney disease (CKD) stage III
+* Transportation barriers affecting medication adherence and appointment attendance
+* Housing instability increasing stress and exacerbating health conditions
+
+**Actionable Clinical Actions:**
+
+* Initiate intensive insulin therapy to achieve A1C < 7%
+	+ Monitor blood glucose levels at least 3 times/day, with a goal of achieving stable glycemic control within the next 2-3 months
+	+ Adjust antihypertensive medications to target BP < 130/80 mmHg, taking into account potential medication interactions and monitoring for hypoglycemia and hyperglycemia
+* Refer to nephrology for CKD management and potential kidney transplant evaluation
+	+ Coordinate referral with primary care team to ensure seamless transition of care and minimize duplication of services
+	+ Specify target blood pressure goal for CKD stage III: < 125/75 mmHg, as per current guidelines (e.g., KDIGO). However, consider individual patient factors that may require a more aggressive or conservative approach.
+* Schedule regular blood pressure monitoring and medication adjustments
+	+ Include lipid management and cardiovascular risk reduction strategies:
+		- Initiate statin therapy within the next 2 weeks to target LDL-C < 100 mg/dL (as per current guidelines)
+		- Develop a plan for lifestyle modifications, such as diet and exercise counseling, to be implemented within the next 4 weeks
+* Schedule regular kidney function tests (e.g., eGFR) every 3 months to monitor disease progression
+
+**SDOH / Access Actions:**
+
+* Connect patient with local transportation services that provide door-to-door service, such as [Organization Name], to facilitate access to healthcare services
+* Collaborate with social worker to explore housing stability options:
+	+ Emergency rental assistance programs (e.g., [Program Name])
+	+ Rapid rehousing programs specifically designed for individuals with chronic health conditions (e.g., [Program Name])
+	+ Develop a clear plan for addressing housing instability, including specific goals and timelines:
+		- Within the next 2 weeks: Connect patient with local housing resources and begin exploring stable housing options
+		- Within the next 6 weeks: Assess patient's progress in achieving stable housing and adjust plan as needed
+	+ Regularly assess patient's housing situation every 3 months to ensure ongoing stability, but consider quarterly or bi-annual assessments if necessary
+
+**Follow-up and Monitoring:**
+
+* Schedule regular phone calls (e.g., monthly) with a designated primary care team member to"
+2026-02-17T19:50:10.831325+00:00,member_60620,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9)
+* Transportation barriers affecting medication adherence and appointment attendance
+* Housing instability contributing to stress and poor health outcomes
+
+**Actionable Clinical Actions:**
+
+1. **Intensive Glucose Management Plan**: Initiate a plan with the goal of A1C < 7 within 3 months:
+	* Monitor blood sugar levels daily, adjust medications as needed (specify which medications to adjust by how much and under what conditions)
+	* Refer to registered dietitian for nutrition counseling and meal planning (consider virtual or phone-based sessions due to transportation barriers)
+2. **Hypoglycemia Management Plan**: Develop a plan to manage hypoglycemia, including:
+	* Identifying risk factors (e.g., sulfonylureas with alcohol)
+	* Establishing protocols for emergency situations (e.g., glucagon administration or hospitalization)
+3. **Medication Safety**:
+	* Perform medication reconciliation using standardized tool (e.g., [Tool Name]) to ensure accuracy and completeness of patient's medication list
+	* Educate patient on self-management techniques, such as blood sugar monitoring and medication adherence
+
+**SDOH / Access Actions:**
+
+1. **Transportation Services**: Connect patient with local transportation services:
+	* Assess current transportation options and identify specific barriers
+	* Explore alternative solutions (e.g., transportation voucher program or ride-sharing service specifically designed for people with chronic conditions)
+2. **Housing Stability Options**: Collaborate with social worker to explore housing stability options:
+	* Schedule regular check-ins (e.g., every 4 weeks) to assess progress and adjust plan as needed
+	* Connect patient with local housing specialist, [Organization Name], who can assess their situation and provide tailored guidance on available resources
+
+**Progress Metrics and Benchmarks:**
+
+1. **A1C Reduction Targets**: Decrease A1C by 2% every 3 months
+2. **Appointment Attendance and Transportation Utilization Rates**: Monitor attendance and transportation utilization rates to ensure access to care
+3. **Patient Engagement in Self-Management Techniques and SDOH Interventions**: Track patient engagement in self-management techniques and SDOH interventions
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointments every 6 weeks to monitor progress and adjust plan as needed
+2. Monitor patient's transportation situation and provide updates on SDOH interventions
+3. Review patient's housing stability regularly and connect with social worker as needed
+
+To address the critiques, I made the following changes:
+
+* Added specific benchmarks for housing stability outcomes (e.g., time to secure stable housing)
+* Specified which medications to"
+2026-02-17T19:51:34.044225+00:00,member_60620,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 9%)
+* Transportation barriers limiting access to healthcare services
+* Housing instability affecting overall well-being and self-care
+* Potential medication non-adherence due to transportation issues, food insecurity, and housing instability
+* Risk of increased blood glucose levels and diabetic complications associated with medication non-adherence
+* Food insecurity as a potential contributing factor to uncontrolled diabetes
+
+**Actionable Clinical Actions:**
+
+* Schedule regular blood glucose monitoring (every 2-3 months) in collaboration with the patient, taking into account their transportation barriers and ability to access a stable location for testing. Consider alternative locations for testing, such as community health centers or mobile health units.
+* Adjust medication regimen every 3-6 months, working closely with the patient to ensure that new regimens are feasible and acceptable given their transportation barriers. Medication reconciliation will be performed at each visit to review patient's current medication list.
+* Specify which medications will be adjusted (e.g., metformin, sulfonylureas) and why (e.g., to improve glycemic control or reduce side effects). Involve the patient in decision-making and ensure that they understand the rationale for any changes.
+* Develop a plan for addressing potential side effects and interactions with other medications, including:
+	+ Monitoring for signs of hypoglycemia or hyperglycemia
+	+ Adjusting medication dosages or switching to alternative medications as needed
+	+ Educating patient on proper use of medications and monitoring for adverse effects
+* Prescribe a glucometer and test strips for home use, with instructions on proper use and maintenance. Patient education on glucometer use and maintenance will be provided during the first follow-up appointment, taking into account their language and cultural needs.
+
+**SDOH / Access Actions:**
+
+* Connect patient with local transportation services (e.g., public transit, ride-sharing programs through organizations such as Uber Health or Lyft Concierge) to facilitate healthcare appointments. Consider affordable options and ensure that the patient is aware of available resources.
+* Collaborate with social work department to explore housing stability options (e.g., temporary rental assistance, permanent supportive housing). Develop a detailed plan for housing stability, including:
+	+ Timeline for exploring and securing stable housing that aligns with the patient's immediate needs
+	+ Responsibilities of patient, social worker, and other team members in this process
+	+ Regular updates on available resources and services will be provided to the patient.
+* Refer patient to a community health worker for ongoing support and linkage to resources. The community health worker will also assist in monitoring patient's medication adherence and provide education on proper use of glucometer and test"
+2026-02-17T19:53:57.279168+00:00,member_76756,nash,0.75,0.68,0.42,0.62,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension not adequately managed (BP > 140/90)
+* Chronic kidney disease progression
+* Transportation and housing instability affecting health outcomes
+
+**Actionable Clinical Actions:**
+
+1. **Diabetes Management:** Adjust medications to achieve individualized A1C target within 3 months:
+	* Add SGLT2 inhibitor (e.g., canagliflozin) as first-line therapy, considering patient's kidney function (eGFR < 45 mL/min/1.73m²)
+	* Monitor for hyperkalemia and worsening renal function every 4-6 weeks
+2. **Hypertension Management:** Optimize hypertension management with lifestyle modifications and medication adjustments:
+	* Start ACE inhibitors (e.g., lisinopril 10mg daily) while monitoring for hyperkalemia and worsening renal function every 4-6 weeks
+3. **Kidney Disease Monitoring:**
+	* Schedule regular kidney function monitoring (every 6-8 weeks) to assess disease progression
+
+**SDOH / Access Actions:**
+
+1. **Transportation Assistance:** Partner with local non-profit organization, ""RideShare,"" to provide patient-specific transportation plans:
+	* Explore alternative modes of transportation (e.g., public transportation, walking/biking)
+2. **Housing Stability:** Connect patient with short-term housing solutions through emergency rental assistance or temporary shelter placement
+3. **Medication Adherence:**
+	+ Use a medication reminder app (e.g., Medisafe) to track adherence and send reminders
+	+ Explore delivery of medications to a trusted family member or friend for transportation support
+
+**Follow-up and Monitoring:**
+
+1. **Schedule Follow-up Appointments:** Schedule follow-up appointments every 12 weeks for:
+	* Blood glucose monitoring
+	* Blood pressure checks
+	* Kidney function assessments
+2. **Monitor Transportation Situation:** Regularly review patient's transportation situation and adjust plan as needed
+
+**Safety-Critical Actions:**
+
+1. **Polypharmacy Risk Assessment:** Conduct regular polypharmacy risk assessments using more nuanced criteria (e.g., MedDRA) to identify high-risk drug combinations.
+2. **Medication Safety Monitoring:** Monitor for hyperkalemia and worsening renal function every 4-6 weeks in patients taking ACE inhibitors or SGLT2 inhibitors.
+
+**Efficiency Enhancements:**
+
+1. **Prioritize Interventions:** Focus on addressing uncontrolled diabetes, hypertension, and chronic kidney disease.
+2. **Streamline Transportation Assistance:** Partner with a single local organization for patient-specific transportation plans.
+3. **Standardize Monitoring"
+2026-02-17T19:55:17.683745+00:00,member_76756,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 8%)
+* Hypertension not adequately managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Transportation barriers hindering regular medical appointments
+* Housing instability affecting overall well-being
+
+**Actionable Clinical Actions:**
+
+* Adjust medication regimen to optimize blood sugar and blood pressure control:
+	+ Metformin dose increase, with careful monitoring for signs of lactic acidosis (e.g., frequent HbA1c checks, lactate level monitoring)
+	+ ACE inhibitor initiation, with discussion about potential side effects (cough, angioedema) and regular monitoring for kidney function decline or electrolyte imbalances
+	+ Lifestyle counseling for diet and exercise, including:
+		- Setting a target HbA1c goal (< 7%) for type 2 diabetes management
+		- Establishing blood pressure targets (e.g., < 130/80 mmHg) and frequency of monitoring (every 6 weeks)
+* Schedule regular kidney function monitoring (every 3 months), with attention to potential medication interactions between metformin and ACE inhibitor
+* Refer to nephrology specialist for CKD management, including discussion about potential need for dialysis or transplant
+
+**Lifestyle Counseling Delivery:**
+The patient will receive lifestyle counseling through a combination of in-person sessions with a registered dietitian and phone-based coaching. The registered dietitian will work with the patient to develop a personalized meal plan and provide education on healthy eating habits. Phone-based coaching will be provided by a certified health coach who will offer support and guidance on exercise and stress management.
+
+**Medication Regimen Monitoring:**
+The primary care provider (PCP) will monitor and adjust the medication regimen as needed, in collaboration with the patient's nephrology specialist. The PCP will review the patient's medication list regularly to ensure that there are no potential interactions between metformin and ACE inhibitor.
+
+**SDOH / Access Actions:**
+
+* Address housing instability through:
+	+ Collaborating with local social services agencies to explore temporary or permanent housing solutions (e.g., emergency shelter, transitional housing program)
+	+ Facilitating access to housing voucher programs (e.g., Section 8) to improve stability
+	+ Providing resources for finding affordable housing options in the patient's area
+* Arrange transportation assistance through:
+	+ Local non-profit organization (e.g., [Name], 555-1234, [email])
+	+ Public transportation services (e.g., bus schedule, [website URL])
+	+ Explore alternative transportation options (e.g., ride-sharing services) to ensure consistent access to appointments
+* Connect"
+2026-02-17T19:57:41.114627+00:00,member_45696,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 9%)
+* Hypertension not well-managed (BP > 140/90 mmHg)
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+1. **Medication Safety and Titration:** Assess patient's baseline risk factors for medication side effects, particularly hypoglycemia or dehydration.
+	* Review current medication list for potential interactions or contraindications.
+	* Educate the patient on monitoring strategies for hypoglycemia, including prescribing glucose check kits and setting up automated alerts for low blood sugar symptoms.
+2. **Regular Monitoring:** Schedule regular blood glucose and BP monitoring to track control.
+
+**SDOH / Access Actions:**
+
+1. **Housing Support:**
+	* Partner with local non-profits (e.g., [Organization Name]) to secure a 3-month lease at an affordable apartment complex by [date].
+	* Explore rapid rehousing programs for long-term sustainability.
+2. **Transportation Solutions:**
+	* Conduct transportation assessment with the patient to identify specific needs and preferences.
+	* Arrange transportation assistance through ride-sharing services, peer-ride programs, or volunteer driver services that accommodate the patient's needs (e.g., wheelchair-accessible vehicles).
+3. **Comprehensive Food Security:**
+	* Refer the patient to culturally relevant and accessible food resources:
+		+ Community gardens: [Organization Name]
+		+ Meal delivery programs: [Organization Name]
+		+ Local food banks/pantries: [Organization Name]
+	* Provide grocery store gift cards for immediate food support.
+4. **Affordable Healthcare Coverage:** Explore Medicaid expansion, sliding-fee clinics, and community health centers through:
+	* [State-specific] Medicaid application process
+	* Sliding-fee clinic referrals (e.g., [Clinic Name])
+	* Community health center partnerships (e.g., [Health Center Name])
+
+**Follow-up and Monitoring:**
+
+1. **Regular Follow-ups:** Schedule follow-up appointments every 2 weeks to review medication adjustments, monitor progress, and address housing situation.
+2. **SDOH Progress Tracking:** Track patient's adherence to SDOH interventions through regular phone calls or text messages.
+
+**Efficiency Enhancements:**
+
+1. **Prioritize SDOH Interventions:** Address immediate housing, transportation, and food insecurity needs in the short-term.
+2. **Specify Referral Processes:** Define referral processes for each SDOH intervention, including communication channels between care team members.
+
+This revised care plan:
+
+* Preserves safety-critical actions (e.g., medication titration, regular monitoring)
+*"
+2026-02-17T19:59:05.375690+00:00,member_45696,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension (BP > 140/90 mmHg)
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+* Schedule appointment with endocrinologist to adjust medication regimen and set A1C goal <7%
+	+ Consider alternative scheduling options, such as telemedicine or virtual consultations, if in-person appointments are not feasible within a short timeframe.
+	+ Monitor for potential interactions between medications and address concerns about polypharmacy
+	+ Educate patient on proper use of medication adherence aids (e.g., pill box, reminders)
+	+ Specify how patient will be monitored for potential side effects of new medications
+* Set specific A1C reduction goals: decrease by 1-2% in next 3 months and aim for <7% within 9 months to allow for a more gradual adjustment period.
+* Refer patient to hypertension specialist within 4-6 weeks for BP management, specifying that the referral will include:
+	+ A comprehensive assessment of the patient's current medication regimen and lifestyle factors
+	+ Development of a personalized plan for managing hypertension, including potential adjustments to medication or lifestyle interventions
+* Order lab work to monitor kidney function, lipid profile, and liver enzymes, with results reviewed in 2-4 weeks.
+* Prescribe medication adherence aids (e.g., pill box, reminders) and educate patient on their proper use, considering alternative methods for patients with limited access to technology.
+
+**SDOH / Access Actions:**
+
+* Connect patient with local housing assistance programs (e.g., Section 8), exploring alternative communication methods such as:
+	+ Mail or email notifications
+	+ Phone calls with a designated contact person
+	+ In-person visits at a community center or other accessible location
+	+ Schedule home visits to assess living conditions and provide health education on maintaining a safe and healthy environment, working with the patient to identify the most convenient time for these visits.
+* Arrange transportation services through public transportation or volunteer driver program, considering alternative solutions such as:
+	+ Community-based initiatives (e.g., ride-sharing programs)
+	+ Peer support programs
+	+ Partnerships with local businesses or organizations to provide transportation assistance
+* Refer patient to food bank or meal delivery service, exploring alternative options for patients with limited access to technology or transportation.
+* Schedule follow-up appointment in 4-6 weeks to review lab results, medication adherence, and BP control, taking into account the patient's work and family obligations.
+
+**Medication Safety Actions:**
+
+* Monitor patient for potential medication-related problems (e.g., hypoglycemia, hyperglycemia)"
+2026-02-17T20:01:29.823944+00:00,member_87297,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension not adequately managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+1. **Medication Adjustments**: Increase Metformin dose to achieve A1C < 8% while considering the patient's comorbidities (CKD, diabetes) and potential for hypoglycemia.
+	* Confirm eGFR ≥ 30 mL/min/1.73m² before increasing Metformin dose.
+	* Monitor lab results every 3 months to adjust medication as needed.
+2. **ACE Inhibitor Initiation**: Add ACE inhibitor for hypertension after confirming eGFR ≥ 30 mL/min/1.73m² and potassium levels ≤ 5.0 mEq/L.
+	* Regularly check serum creatinine, eGFR, and potassium levels every 3 months.
+	* Adjust medication as needed to maintain target eGFR and potassium levels.
+3. Schedule regular A1C checks every 3 months with a goal of achieving A1C < 8%.
+4. Refer to nephrology for CKD management.
+
+**SDOH / Access Actions:**
+
+1. **Housing Insecurity**: Connect patient with local housing authority assistance, emergency rental programs, and permanent supportive housing options.
+	* Explore benefits enrollment and provide temporary financial assistance for rent/mortgage payments as needed.
+2. **Transportation Barriers**: Develop a concrete transportation plan using:
+	* Public transportation vouchers (e.g., MetroCard) provided by the healthcare organization
+	* Ride-sharing services (e.g., Uber Health) used for medical appointments
+	* Alternative transportation methods (e.g., carpooling, bike-share programs)
+3. **Food Insecurity**: Refer to local food bank or pantry and connect with community gardens or farmers' markets offering affordable produce options.
+	* Explore meal delivery programs or online grocery shopping platforms for increased access to healthy food.
+
+**Affordable Healthcare Coverage:**
+
+1. Explore Medicaid, sliding fee scale programs, and community-based health clinics offering discounted services.
+2. Consider enrolling the patient in a Medicaid managed care program or a community-based health clinic that offers comprehensive primary care services at no cost to the patient.
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointment in 2 weeks to review medication adjustments and lab results.
+2. Regularly assess patient's housing situation, transportation needs, and food insecurity status at each visit.
+3. Monitor progress on housing insecurity, transportation barriers, and food insecurity using"
+2026-02-17T20:02:55.420389+00:00,member_87297,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension not adequately managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Housing insecurity, transportation barriers, and food insecurity impacting health outcomes
+
+**Actionable Clinical Actions:**
+
+* Adjust medication regimen to:
+	+ Metformin dose increase to 2000mg/day with careful monitoring for lactic acidosis (e.g., regular lactate levels, ECG monitoring)
+	+ Lisinopril dose adjustment to target BP < 130/80 mmHg
+	+ Renal-friendly ACE inhibitor added (e.g., enalapril) with monitoring for hyperkalemia (e.g., regular potassium level checks)
+* Schedule regular A1C and creatinine checks every 3 months, with a goal of achieving:
+	+ A1C < 7% within the next 6-12 months
+	+ BP < 130/80 mmHg within the next 6-12 months
+* Refer to nephrology for CKD management
+
+**SDOH / Access Actions:**
+
+* Connect patient with local housing resources:
+	+ Homeless outreach program (initiate contact within 2 weeks, acknowledging that this may take longer to establish)
+	+ Affordable housing options (schedule tour and application process within 4-6 weeks, recognizing the need for more time to secure suitable housing)
+* Arrange transportation assistance:
+	+ Explore alternative options, such as ride-sharing services or community-based transportation programs, due to limited public transportation access in patient's area
+	+ Volunteer driver program (coordinate schedule within 3 months, with ongoing evaluation of feasibility and effectiveness)
+* Provide food insecurity support:
+	+ Food bank referral (connect patient with local food banks that offer more than just food distribution, such as cooking classes and nutrition education, within 2 weeks)
+	+ SNAP application assistance (schedule appointment within 2 weeks) and provide additional resources for navigating the application process
+
+**Lifestyle Modifications:**
+
+* Schedule diet and exercise counseling to support diabetes management:
+	+ Connect patient with community-based programs offering free or low-cost fitness classes and nutrition education
+	+ Focus on gradual, achievable goals for increasing physical activity and improving diet quality, such as:
+		- Gradually increase daily servings of fruits and vegetables to 3-5 per day over the next 6 months
+		- Aim for 30 minutes/week of moderate-intensity aerobic physical activity by scheduling 1 time/week of brisk walking or swimming
+* Monitor patient's progress and adjust goals as needed, taking into account their multiple chronic conditions and social barriers
+
+**Med"
+2026-02-17T20:05:17.695680+00:00,member_61172,nash,0.85,0.72,0.68,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 2-year-old Male Patient with Type 2 Diabetes**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 8%)
+* Transportation barriers affecting regular medical appointments
+* Housing instability posing risk to patient's health and well-being
+* Potential for medication non-adherence due to family circumstances
+
+**Actionable Clinical Actions:**
+
+1. **Pediatric Diabetes Management:**
+	* Schedule regular blood glucose monitoring (every 2 weeks) and adjust insulin regimen as needed.
+	* Refer to pediatric endocrinologist within 2 weeks for specialized care.
+	* Develop clear caregiver training modules on pediatric insulin administration, including weight-based dosing and titration protocols.
+	* Establish emergency hypoglycemia protocols with contact information for pediatric endocrinologist on-call.
+2. **Medication Safety Protocols:**
+	* Confirm dosing accuracy and monitor for insulin-related hypoglycemia.
+	* Ensure caregivers are trained to handle insulin administration safely, including proper storage and disposal of medications.
+
+**SDOH / Access Actions:**
+
+1. **Housing Stability:**
+	* Collaborate with social services to provide temporary accommodation support (e.g., 6 weeks) and connect family with local housing authority or non-profit organization providing permanent supportive housing.
+	* Develop a clear plan for addressing long-term housing instability, including specific steps to be taken by social services and the patient's family.
+2. **Transportation Assistance:**
+	* Explore alternative options (e.g., partnering with local organizations) before enrolling patient in Medicaid-funded transportation program.
+3. **Nutrition Education:**
+	* Integrate personalized nutrition education into regular home visits (every 4 weeks), focusing on meal planning, grocery shopping, and cooking techniques tailored to patient's needs.
+	* Provide separate training or support for caregivers on healthy eating habits and meal planning.
+
+**Medication Adherence Plan:**
+
+* Schedule bi-weekly phone calls with patient's caregivers to monitor medication adherence.
+* Develop a concrete plan for addressing non-adherence, including providing additional support or resources for caregivers.
+
+**Follow-up and Monitoring:**
+
+1. **Regular Home Visits:** Conduct regular home visits (every 4 weeks) to assess living conditions, provide support, and monitor patient's progress.
+2. **Interdisciplinary Team Meetings:** Schedule monthly meetings with pediatrician, social worker, nutritionist, and caregivers to review patient's progress and adjust treatment plan as needed.
+
+**Efficiency Measures:**
+
+1. **Prioritize Patient's Immediate Needs:** Address transportation barriers before enrolling patient in Medicaid-funded program.
+2. **Specify Follow-up Metrics:** Define metrics for assessing progress towards housing stability, medication adherence, and blood glucose control (e.g.,"
+2026-02-17T20:06:41.308276+00:00,member_61172,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 2-year-old Male Patient**
+
+**Goal Statement:**
+By the end of 6 months, the patient will achieve optimal blood glucose control (HbA1c <7%), demonstrate improved weight management, and exhibit stable housing with reduced transportation barriers.
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 8%)
+* Transportation barriers limiting access to healthcare services
+* Housing instability posing risk to patient's health and well-being
+
+**Actionable Clinical Actions:**
+
+1. **Priority Action:** Schedule regular blood glucose monitoring (at least 3-4 times a week) and adjust medication regimen as needed to target an HbA1c goal of <7% for pediatric patients.
+2. Develop a weight management plan with registered dietitian, incorporating healthy eating habits and physical activity goals tailored to the patient's age and abilities:
+	* Specific, measurable goals: Reduce body mass index (BMI) by 5-7% in 3 months
+	* Progress tracking: Regularly monitor weight and BMI at follow-up appointments, using a growth chart to track progress
+3. Refer to pediatric endocrinologist for specialized care, including regular foot exams to prevent diabetic foot ulcers.
+4. Educate family on proper diabetes self-management techniques:
+	+ Recognizing signs of hypoglycemia or hyperglycemia and taking corrective action (e.g., using a glucometer to monitor blood glucose levels)
+	+ Monitoring for DKA symptoms (e.g., vomiting, abdominal pain) and seeking immediate medical attention if necessary
+	* Provide family with a diabetes self-management education program, such as the ""Pediatric Diabetes Self-Management Program"" (PDSMP), which includes:
+		- A comprehensive guide to managing pediatric diabetes
+		- Regular phone or video check-ins with a certified diabetes educator
+		- Access to online resources and support groups
+
+**SDOH / Access Actions:**
+
+1. **Short-term Solution:** Connect patient's family with local transportation services (e.g., Medicaid-funded transportation program), and schedule regular transportation assistance to ensure continuity of care.
+2. Collaborate with social worker to:
+	* Explore stable housing options, provide referrals as needed, and track progress towards achieving stable housing
+	* Develop a long-term plan for stable housing, including potential resources and support services (e.g., Section 8 Housing Choice Voucher Program)
+3. Facilitate communication between healthcare providers and patient's family to ensure continuity of care.
+4. **Community Resources:**
+	+ Local non-profit organizations providing temporary or permanent housing assistance:
+		- [List specific organizations with contact information]
+	+ Government programs offering financial assistance for housing-related expenses:"
+2026-02-17T20:09:09.667980+00:00,member_35806,nash,0.75,0.68,0.72,0.72,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 11-year-old Male Patient**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 7%)
+* Hypertension (BP > 95th percentile)
+* Chronic kidney disease (CKD) stage III
+* Congestive heart failure (CHF) with decreased ejection fraction
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+* **Type 2 Diabetes Management**: Initiate intensive insulin therapy to achieve individualized A1C target based on age and complications. Monitor blood glucose levels daily, adjust medication regimen as needed.
+	+ Consider alternative interventions (e.g., insulin dosing adjustments or carbohydrate counting) due to potential limitations of insulin pump therapy or CGM for an 11-year-old patient.
+* **Hypertension Management**: Implement a comprehensive plan with specific targets for blood pressure control (<120/80 mmHg). Start lisinopril 2.5mg PO daily, titrate as needed to achieve BP goal, and monitor electrolytes and renal function before and after starting medication.
+	+ Assess for contraindications (e.g., hyperkalemia, renal artery stenosis) and baseline electrolyte levels before initiating lisinopril.
+* **CKD Management**: Refer to nephrology within 2 weeks and discuss:
+	+ Dietary restrictions tailored to CKD stage III, including protein and fluid intake recommendations
+	+ Medication adjustments for optimal kidney function
+	+ Regular follow-up with the nephrology team for timely and effective care coordination
+	+ Coordinate transportation assistance or telehealth options to ensure patient access to these appointments.
+* **CHF Treatment Optimization**: Increase furosemide dose to 40mg PO daily, monitor weight and fluid status weekly. Define decreased ejection fraction threshold (e.g., <45%) that warrants optimization of CHF treatment.
+	+ Specify guidelines (e.g., ACC/AHA) for defining ""decreased ejection fraction threshold"" and optimizing treatment.
+
+**SDOH / Access Actions:**
+
+* **Housing Insecurity**: Connect patient with a housing case manager who can provide comprehensive support, specifically exploring alternative options such as Section 8 housing or rapid re-housing programs. Schedule regular check-ins to track progress and ensure equitable access.
+* **Transportation Barriers**: Partner with local organizations to provide concrete transportation services (e.g., volunteer driver program, public transportation vouchers). Arrange for transportation services as needed and develop a backup plan in case of transportation issues.
+* **Food Insecurity**: Connect patient with a culturally sensitive nutrition support service that takes into account their dietary needs and preferences. Ensure the service provides tailored meal planning and nutrition education.
+
+**Follow-up"
+2026-02-17T20:10:35.973295+00:00,member_35806,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 11-year-old Male Patient**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (HbA1c > 8%)
+* Hypertension (BP > 95th percentile)
+* Chronic kidney disease progression
+* Congestive heart failure exacerbation risk
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+* Initiate intensive insulin therapy to achieve HbA1c < 7%
+	+ Educate patient and family on proper use of insulin therapy, including injection technique and blood glucose monitoring (refer to American Diabetes Association guidelines for pediatric diabetes management)
+	+ Schedule regular follow-up appointments with pediatric endocrinologist to monitor medication adherence and adjust treatment plan as needed
+	+ Develop a contingency plan for medication management in case of housing instability, such as:
+		- Identifying nearby pharmacies or medical facilities where the patient can access insulin therapy if unable to return home
+		- Exploring mobile health services that can provide insulin injections and monitoring in non-traditional settings
+* Adjust antihypertensive medications to target BP < 90th percentile for children aged 11-12 years, specifically:
+	+ Use of lisinopril or enalapril as first-line antihypertensive agents (refer to American Academy of Pediatrics guidelines for pediatric hypertension management)
+	+ Monitor potential medication interactions between antihypertensive medications and other prescribed medications
+	+ Educate patient and family on lifestyle modifications to support blood pressure management, including diet and exercise recommendations (refer to American Heart Association guidelines for pediatric cardiovascular health)
+	+ Consider consulting with a pharmacist or clinical pharmacist specialist to review the patient's complex medication regimen and identify potential interactions or issues
+* Refer to nephrology for CKD management and potential kidney transplant evaluation:
+	+ Regularly monitor eGFR and albuminuria to assess disease progression
+	+ Develop a plan for regular monitoring of electrolyte levels and adjust treatment as needed
+	+ Define CKD management goals, including slowing disease progression and reducing risk of cardiovascular complications (refer to Kidney Disease: Improving Global Outcomes guidelines)
+* Implement CHF management plan, including diuretics and beta-blockers as needed:
+	+ Educate patient and family on self-management techniques, such as fluid restriction and medication adherence
+	+ Schedule regular follow-up appointments with cardiologist to monitor disease progression and adjust treatment plan as needed
+
+**SDOH / Access Actions:**
+
+* Connect patient with local housing assistance programs (e.g., Section 8) and provide resources for securing stable housing:
+	+ Identify specific housing assistance programs in the patient's area, such as the Housing Choice Voucher Program
+	+ Provide information on how to"
+2026-02-17T20:13:02.840388+00:00,member_26664,nash,0.75,0.82,0.9,0.82,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 80-year-old Female Patient**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension not optimally managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Congestive heart failure exacerbation risk
+* Housing insecurity and potential homelessness
+* Transportation barriers limiting access to care
+* Food insecurity affecting nutrition and health
+
+**Actionable Clinical Actions:**
+
+1. **Refer patient to endocrinology for A1C management and insulin optimization**, with a focus on CKD stage-specific targets (e.g., blood pressure <130/80 mmHg) and avoidance of nephrotoxic agents.
+2. Adjust antihypertensive medications to achieve BP < 130/80 mmHg, with standardized approach for titration and monitoring for hyperkalemia or worsening renal function.
+3. Schedule regular kidney function monitoring (eGFR), including assessment of CKD stage-specific targets.
+4. Prescribe ACE inhibitor or ARB for heart failure management, with patient education on side effects and potential drug interactions.
+5. Order echocardiogram to assess cardiac function.
+
+**SDOH / Access Actions:**
+
+1. **Connect patient with emergency shelters and permanent supportive housing programs**, prioritizing her high risk of homelessness. Provide resources for Section 8 housing and rapid rehousing programs.
+2. Arrange transportation services through a combination of NEMT program, volunteer driver programs, or ride-sharing services to ensure reliable access to care.
+3. Refer patient to food bank and nutrition counseling services, providing information on how to access these resources effectively (e.g., grocery shopping, meal planning, cooking classes).
+4. Assist with Medicaid application process through a dedicated social worker or navigator.
+
+**Efficiency Enhancements:**
+
+* Clearly rank clinical and SDOH/access actions by urgency and importance.
+* Integrate relevant SDOH/access actions with corresponding clinical actions.
+* Consolidate follow-up appointments into a single visit every 6-8 weeks to review multiple metrics (A1C, BP, kidney function) and reduce patient burden.
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointment in 6-8 weeks to review A1C, BP, kidney function results, and assess CKD stage-specific targets.
+2. Monitor patient's medication adherence and adjust as needed.
+3. Regularly assess patient's housing and transportation situation, adjusting SDOH interventions accordingly.
+
+**Medication Safety:**
+
+* Conduct a thorough medication reconciliation to identify potential drug interactions or adverse events.
+* Consider using a medication management strategy (e.g., pill boxes, reminders) to improve patient adherence.
+
+**Equity-Focused Actions:**
+
+1. **"
+2026-02-17T20:14:30.085568+00:00,member_26664,compute_matched,0.75,0.6,0.45,0.6,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 80-year-old Female Patient**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9)
+* Cardiovascular disease (hypertension and congestive heart failure) with reduced ejection fraction
+* Chronic kidney disease (CKD) stage III
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Risk Assessment and Mitigation:**
+
+* Conduct a comprehensive polypharmacy risk assessment to identify potential medication interactions and optimize medication regimens, including:
+	+ Review of current medications, including diabetes medications and ACE inhibitors/ARBs.
+	+ Consider deprescribing or discontinuing medications that are no longer necessary or causing harm.
+	+ Explore alternative medication delivery options for patients with transportation barriers, such as:
+		- Mail-order pharmacy services
+		- Medication delivery through a local community health center
+		- Use of automated pill dispensers or smart pill boxes that can be programmed remotely
+
+**Actionable Clinical Actions:**
+
+* Reduce A1C to <7 within 3 months by adjusting diabetes medication as follows:
+	+ Switch from metformin to sulfonylurea (glyburide) with a target dose of 5mg/day.
+	+ Increase physical activity by 30 minutes/day, 3 times/week.
+	+ Monitor blood glucose levels regularly, with a minimum of daily fingerstick glucose checks.
+* Manage hypertension and CHF with ACE inhibitor/ARB:
+	+ Initiate lisinopril 2.5mg/day and titrate to target BP <140/90 mmHg within 6 weeks.
+	+ Educate on lifestyle modifications (diet, exercise).
+* Refer to nephrology for CKD management:
+	+ Schedule regular kidney function tests (e.g. every 2 months).
+	+ Discuss dialysis options if necessary.
+
+**SDOH / Access Actions:**
+
+* Prioritize housing insecurity and transportation barriers by connecting patient to:
+	+ Local housing assistance programs, such as Section 8 or the Department of Housing and Urban Development's (HUD) Homeless Prevention Grant Program.
+	+ Transportation services through public transportation, volunteer organizations, or non-emergency medical transportation (NEMT) programs.
+* Address food insecurity by referring patient to:
+	+ Food bank or meal delivery services, such as Meals on Wheels or senior nutrition programs.
+	+ Local resources that provide groceries and meals on a regular basis.
+
+**Medication Safety and Adherence:**
+
+* Develop a medication regimen that takes into account the patient's housing insecurity and transportation barriers, including:
+	+ Using automated pill dispensers or smart pill boxes that can be programmed remotely.
+	+ Identifying alternative medication delivery options (e.g. mail-order pharmacy).
+* Monitor"
+2026-02-17T20:16:50.745129+00:00,member_14370,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension (BP > 140/90 mmHg)
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+1. Schedule appointment with endocrinologist to review current medication regimen and discuss potential adjustments for improved glycemic control.
+2. Order lab work:
+	* A1C every 3 months
+	* Lipid profile every 6 months
+	* Complete blood count (CBC) as needed
+3. Prescribe medication adherence aids (e.g., pill box, reminders) and monitor adherence metrics (pill count, refill rates, missed doses).
+
+**SDOH / Access Actions:**
+
+1. **Housing Stability**: Connect patient with local housing assistance programs:
+	* Section 8: [insert contact information]
+	* Rapid re-housing: [insert contact information]
+	* Schedule follow-up appointment in 2 weeks to review progress and reassess housing needs.
+2. **Transportation Solutions**: Arrange transportation for medical appointments:
+	* Volunteer driver program: [insert contact information]
+	* Public transportation: provide patient with bus passes or schedules
+	* Explore alternative solutions (e.g., ride-sharing services, carpooling) if volunteer driver programs are not feasible.
+3. **Food Security**: Refer patient to food bank and nutrition counseling services:
+	* Food bank: [insert contact information]
+	* Nutrition counselor: schedule follow-up appointment in 2 weeks to review progress and provide individualized education on self-monitoring and medication management.
+
+**Medication Safety Review**: Conduct a formal medication review for potential drug interactions or polypharmacy risks within the next 6 months.
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointments with primary care physician every 2 weeks to review lab results, medication adjustments, and SDOH/access actions.
+2. Monitor patient's blood pressure, A1C levels, and medication adherence at each visit.
+3. Conduct regular assessments of patient's housing, transportation, and food security needs.
+
+**Efficiency Measures:**
+
+* Prioritize actionable clinical actions and SDOH/access actions using a clear hierarchy or matrix to guide decision-making.
+* Track and update SDOH/access actions regularly through a spreadsheet or patient portal.
+* Monitor medication adherence metrics (pill count, refill rates, missed doses) and adjust treatment plan as needed.
+
+**Risk Coverage for SDOH Actions:**
+
+* Implement proactive approach to identifying and addressing potential risks:
+	+ Use predictive analytics to identify patients at high risk of housing instability or transportation barriers
+	+ Schedule regular reassessments every 3-6 months to ensure timely"
+2026-02-17T20:18:15.530976+00:00,member_14370,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for 52-year-old Female Patient**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9)
+* Hypertension (BP > 140/90 mmHg)
+* Housing insecurity
+* Transportation barriers
+* Food insecurity
+
+**Actionable Clinical Actions:**
+
+* Schedule a phone or video appointment in 2 weeks to review medication adherence and A1C results, taking into account the patient's housing insecurity and transportation barriers.
+* Refer patient to a registered dietitian for nutrition counseling and meal planning, with emphasis on ADA guidelines for type 2 diabetes management. Specifically, target blood pressure goal is < 130/80 mmHg, and A1C goal is < 7%.
+* Clarify medication adjustments for hypertension management in patients with diabetes: consider adding ACE inhibitors or ARBs to manage BP and reduce proteinuria.
+* Specify lab work to be ordered for monitoring disease progression:
+	+ Lipid profile (every 6 months)
+	+ Kidney function (every 3-6 months)
+	+ Hemoglobin A1c (every 2-3 months)
+* Conduct a thorough medication reconciliation process to ensure accurate and up-to-date medication lists, including review of polypharmacy and potential medication interactions.
+* Educate patient on proper use of medications, including importance of adherence and potential side effects, using verbal education and follow-up with visual aids or online resources.
+
+**SDOH / Access Actions:**
+
+* Connect patient with local housing resources:
+	+ Section 8 website (www.hud.gov/topics/housing-choice-voucher-program)
+	+ Emergency assistance hotline (2-1-1 or 1-800-273-TALK)
+* Explore transportation options with patient to identify long-term solutions, such as car ownership or ride-sharing programs.
+* Refer patient to a food bank or pantry for assistance with food insecurity:
+	+ Local food bank website (e.g., Feeding America: www.feedingamerica.org)
+	+ Food assistance program eligibility criteria (e.g., SNAP, WIC)
+* Explore options for medication assistance programs (e.g., patient assistance programs):
+	+ Manufacturer websites (e.g., Novartis Patient Assistance Program: www.novartis.com/patient-assistance-program)
+	+ Eligibility criteria and application process
+* Develop a clear plan for follow-up with patient on housing, transportation, and food insecurity resources, as well as medication assistance programs:
+	+ Schedule regular check-ins (e.g., every 2-3 months) to monitor progress and provide support.
+	+ Collaborate with social work or community outreach team to ensure timely follow-up.
+
+**Medication Safety:**
+
+* Define regular medication review schedule:
+	+ Every 3-6"
+2026-02-17T20:20:45.197336+00:00,member_47166,nash,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+* Uncontrolled type 2 diabetes (A1C > 9%)
+* Hypertension not adequately managed (BP > 140/90 mmHg)
+* Chronic kidney disease progression
+* Transportation barriers affecting medication adherence and appointment attendance
+* Housing instability contributing to stress and poor health outcomes
+
+**Actionable Clinical Actions:**
+
+1. **Risk Mitigation for Polypharmacy and Adverse Drug Interactions**: Assess current medications and develop a plan to mitigate potential risks:
+	* Review patient's medication list with the patient and healthcare team, focusing on CKD-specific interactions (e.g., aminoglycosides or contrast agents)
+	* Implement strategies to minimize side effects, including monitoring potassium levels, adjusting medication doses, and managing hyperkalemia
+2. **Tailored Diabetes Targets**: Adjust diabetes targets according to KDIGO guidelines for CKD patients:
+	* Consult American Diabetes Association guidelines for individualized A1C targets based on CKD stage
+	* Develop a plan to achieve tailored targets, including regular monitoring and adjustments as needed
+3. **Kidney Function Monitoring**: Schedule regular kidney function monitoring (e.g., every 3 months) to assess disease progression and adjust treatment plans accordingly
+
+**SDOH / Access Actions:**
+
+1. **Transportation Assistance**: Connect patient with a local non-profit organization providing transportation services, such as [insert specific organization]. Facilitate access to flexible scheduling or door-to-door service.
+2. **Housing Support**: Research local organizations providing emergency rental assistance and rapid rehousing programs that meet the patient's specific needs. For example:
+	+ Public transportation subsidies
+	+ Ride-sharing services (e.g., Uber Health)
+	+ Volunteer driver programs
+3. **Stress Management**: Connect patient with a therapist or counselor who can provide ongoing support and guidance, considering culturally sensitive options such as mindfulness-based stress reduction programs specifically designed for patients with CKD.
+4. **Communication with Social Service Agencies**: Establish clear communication channels between healthcare providers, social service agencies, and other stakeholders:
+	+ Define roles and responsibilities for coordinating care
+	+ Facilitate regular updates on patient's progress and adjust plans as needed
+
+**Follow-up and Monitoring:**
+
+1. Schedule follow-up appointments every 2-3 months to assess medication titration, kidney function monitoring, SDOH assessment, and progress towards health goals.
+2. Monitor patient's transportation situation more frequently (e.g., every 6 weeks) and address any changes or concerns between follow-up appointments.
+
+**Patient Engagement:**
+
+* Involve the patient in setting realistic, achievable goals that align with her values and priorities
+* Regularly review and update the plan to assess progress"
+2026-02-17T20:22:14.343204+00:00,member_47166,compute_matched,0.75,0.68,0.82,0.75,3,False,deepseek-r1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,llama3.1:8b,deepseek-r1:8b,"**Revised Care Plan for [Patient Name]**
+
+**Problem List:**
+
+• Uncontrolled type 2 diabetes (A1C > 9%) due to inadequate insulin therapy and poor medication adherence, exacerbated by transportation barriers.
+• Hypertension not adequately managed (BP > 140/90 mmHg) despite antihypertensive medications, contributing to chronic kidney disease progression.
+• Chronic kidney disease progression, with potential for dialysis evaluation, necessitating nephrology referral.
+• Transportation barriers affecting medication adherence and appointments, requiring connection to local transportation services.
+• Housing instability contributing to stress and poor health outcomes, requiring exploration of housing stability options.
+
+**Actionable Clinical Actions:**
+
+• Initiate basal/bolus insulin therapy with careful monitoring for hypoglycemia and weight gain (e.g., regular A1C checks, weight monitoring).
+• Adjust antihypertensive medications to achieve target BP range of < 130/80 mmHg, considering potential interactions with other medications. Monitor BP every 2 weeks for the first month, then monthly thereafter.
+• Refer to nephrology for CKD management and potential dialysis evaluation based on creatinine levels > 1.5 mg/dL or GFR < 30 mL/min/1.73 m^2.
+• Schedule regular A1C, lipid profiles, creatinine checks, and medication reconciliation process every 3 months.
+
+**SDOH / Access Actions:**
+
+• **Transportation Connection:** Connect patient with local transportation services that cater to their specific needs (e.g., wheelchair-accessible vehicles). Provide resources for alternative transportation options (e.g., public transportation, ride-sharing services) and explore potential partnerships with community organizations or non-profits that offer free or low-cost transportation.
+• Collaborate with social worker to develop a **Housing Stability Plan** within the next 2 weeks. This plan will include:
+	+ Exploring housing stability options (e.g., Section 8, rapid rehousing programs) and connecting patient with local resources
+	+ Developing a timeline for achieving stable housing, including potential milestones and support services
+	+ Identifying potential barriers to housing stability and developing strategies to address them
+• Provide patient education on diabetes self-management and hypertension control through bi-weekly group sessions, covering topics such as:
+	+ Medication adherence and potential side effects
+	+ Healthy eating habits and meal planning
+	+ Stress management techniques
+
+**Medication Safety:**
+
+• Perform medication reconciliation process every 3 months by pharmacist or nurse practitioner to ensure that all medications are up-to-date and accurate. Monitor for potential interactions and adjust care plan as needed.
+• **Medication Access and Adherence Strategies:** Implement strategies to improve medication access and adherence, such as:
+	+ Pill"
