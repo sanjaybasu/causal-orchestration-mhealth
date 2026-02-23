@@ -1,16 +1,29 @@
+# Environment and secrets
 .env
 .env.local
 .env.*.local
 *.env
+
+# Python
 __pycache__/
 *.pyc
 *.pyo
+*.egg-info/
+dist/
+build/
+
+# OS
 .DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
 *.log
 
-# Data files (patient data — not committed to repo)
+# Data files (patient data not committed to repo)
 data/
+
 # Generated results and figures (reproduced by running the experiment)
 results/
-# Manuscript and methods documents
-docs/

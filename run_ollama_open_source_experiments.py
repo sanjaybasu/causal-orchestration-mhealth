@@ -234,7 +234,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--cohort-path",
         type=str,
-        default="data/synthetic_cohort_sample.csv.gz",
+        default="data/real_cohort_experiment_eligible.csv.gz",
         help="Path to cohort CSV/CSV.GZ.",
     )
     parser.add_argument(

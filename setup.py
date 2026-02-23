@@ -1,13 +1,9 @@
-"""
-Setup script for causal-orchestration-mhealth package.
-"""
+"""Setup script for causal-orchestration-mhealth package."""
 
 from setuptools import setup, find_packages
 import pathlib
 
 here = pathlib.Path(__file__).parent.resolve()
-
-# Get the long description from the README file
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
@@ -18,7 +14,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/sanjaybasu/causal-orchestration-mhealth",
     author="Sanjay Basu, Aaron Baum",
-    author_email="sanjay@waymarkcare.com",
+    author_email="sanjay.basu@waymarkcare.com",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",
@@ -31,7 +27,7 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
-    keywords="healthcare, AI, multi-agent systems, LLM, clinical decision support, conversational AI",
+    keywords="healthcare, AI, multi-agent systems, LLM, clinical decision support",
     package_dir={"": "."},
     packages=find_packages(where="."),
     python_requires=">=3.10, <4",
@@ -40,34 +36,11 @@ setup(
         "pandas>=2.0.0",
         "scipy>=1.10.0",
         "matplotlib>=3.7.0",
-        "seaborn>=0.12.0",
-        "scikit-learn>=1.3.0",
-        "litellm>=1.30.0",
-        "openai>=1.10.0",
-        "anthropic>=0.18.0",
-        "python-dotenv>=1.0.0",
+        "requests>=2.31.0",
         "tqdm>=4.65.0",
-        "typing-extensions>=4.5.0",
     ],
-    extras_require={
-        "dev": [
-            "pytest>=7.4.0",
-            "pytest-cov>=4.1.0",
-            "jupyter>=1.0.0",
-            "ipywidgets>=8.0.0",
-        ],
-        "synthetic": [
-            "sdv>=1.0.0",
-        ],
-    },
-    entry_points={
-        "console_scripts": [
-            "causal-orchestration=scripts.run_complete_pipeline:main",
-        ],
-    },
     project_urls={
         "Bug Reports": "https://github.com/sanjaybasu/causal-orchestration-mhealth/issues",
         "Source": "https://github.com/sanjaybasu/causal-orchestration-mhealth",
-        "Paper": "https://doi.org/[DOI-when-available]",
     },
 )

@@ -9,8 +9,9 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 RUN_NAME="real_cohort_n200_seed42"
-MANUSCRIPT="/Users/sanjaybasu/waymark-local/notebooks/causal_orchestration_mhealth_submission/submission_package_2026-02-18/manuscript.md"
-APPENDIX="/Users/sanjaybasu/waymark-local/notebooks/causal_orchestration_mhealth_submission/submission_package_2026-02-18/appendix.md"
+# Set MANUSCRIPT and APPENDIX paths. Override with environment variables if needed.
+MANUSCRIPT="${MANUSCRIPT:-$PROJECT_ROOT/../../../notebooks/causal_orchestration_mhealth_submission/submission_package_2026-02-18/manuscript.md}"
+APPENDIX="${APPENDIX:-$PROJECT_ROOT/../../../notebooks/causal_orchestration_mhealth_submission/submission_package_2026-02-18/appendix.md}"
 
 cd "$PROJECT_ROOT"
 
@@ -31,6 +32,7 @@ fi
 # Step 2: Rebuild manuscript tables
 echo "Building manuscript tables..."
 python3 scripts/build_peer_review_artifacts.py \
+    --cohort-path data/real_cohort_experiment_eligible.csv.gz \
     --real-cohort-path data/real_cohort_analytic.parquet \
     --controlled-run-name "$RUN_NAME" \
     --ongoing-run-name pilot_peerready_n10_20260217
@@ -43,6 +45,8 @@ from pathlib import Path
 run = 'real_cohort_n200_seed42'
 df = pd.read_csv(f'results/{run}_results.csv')
 metrics = ['safety','efficiency','equity','composite']
+# Deduplicate: take mean per (patient_id, condition) in case of restart duplicates
+df = df.groupby(['patient_id','condition'], as_index=False)[metrics].mean()
 n = df[df.condition=='nash'][['patient_id']+metrics].set_index('patient_id')
 b = df[df.condition=='compute_matched'][['patient_id']+metrics].set_index('patient_id')
 common = n.index.intersection(b.index)
@@ -69,8 +73,11 @@ python3 - <<'PY'
 import pandas as pd, numpy as np
 from scipy import stats
 df = pd.read_csv('results/real_cohort_n200_seed42_results.csv')
-n_df = df[df.condition=='nash'][['patient_id','safety','efficiency','equity','composite']].set_index('patient_id')
-b_df = df[df.condition=='compute_matched'][['patient_id','safety','efficiency','equity','composite']].set_index('patient_id')
+metrics = ['safety','efficiency','equity','composite']
+# Deduplicate: take mean per (patient_id, condition) in case of restart duplicates
+df = df.groupby(['patient_id','condition'], as_index=False)[metrics].mean()
+n_df = df[df.condition=='nash'][['patient_id']+metrics].set_index('patient_id')
+b_df = df[df.condition=='compute_matched'][['patient_id']+metrics].set_index('patient_id')
 common = n_df.index.intersection(b_df.index)
 print(f"\nN complete pairs: {len(common)}")
 print("\nCondition means (95% CI):")

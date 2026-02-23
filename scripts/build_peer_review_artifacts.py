@@ -61,7 +61,7 @@ def parse_args() -> argparse.Namespace:
         "--cohort-path",
         type=str,
         default=None,
-        help="Path to cohort CSV/CSV.GZ for Table 2 retrospective analysis. Defaults to data/synthetic_cohort_sample.csv.gz.",
+        help="Path to cohort CSV/CSV.GZ for Table 2 retrospective analysis. Defaults to data/real_cohort_experiment_eligible.csv.gz.",
     )
     parser.add_argument(
         "--real-cohort-path",
@@ -72,7 +72,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--controlled-run-name",
         type=str,
-        default="peerreview_legacy_n200_seed42",
+        default="real_cohort_n200_seed42",
         help="Run name for controlled results to report in the manuscript draft.",
     )
     parser.add_argument(
@@ -299,11 +299,16 @@ def build_table2_retrospective(df: pd.DataFrame) -> pd.DataFrame:
 def build_controlled_tables(results_csv: Path) -> Tuple[pd.DataFrame, pd.DataFrame, Dict[str, object]]:
     df = pd.read_csv(results_csv)
 
+    # Deduplicate: experiment restarts may produce multiple rows per (patient_id, condition).
+    # Take the mean of metric columns for each (patient_id, condition) pair.
+    metric_cols = ["safety", "efficiency", "equity", "composite"]
+    df = df.groupby(["patient_id", "condition"], as_index=False)[metric_cols].mean()
+
     nash = df[df["condition"] == "nash"][
-        ["patient_id", "safety", "efficiency", "equity", "composite"]
+        ["patient_id"] + metric_cols
     ].copy()
     baseline = df[df["condition"] == "compute_matched"][
-        ["patient_id", "safety", "efficiency", "equity", "composite"]
+        ["patient_id"] + metric_cols
     ].copy()
     merged = nash.merge(baseline, on="patient_id", suffixes=("_nash", "_baseline"))
     paired_ids = set(merged["patient_id"].astype(str))
@@ -447,7 +452,7 @@ def main() -> None:
     output_dir = Path(args.output_dir).resolve() if args.output_dir else (results_dir / "writeup_package")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    cohort_path = Path(args.cohort_path).resolve() if args.cohort_path else (project_root / "data" / "synthetic_cohort_sample.csv.gz")
+    cohort_path = Path(args.cohort_path).resolve() if args.cohort_path else (project_root / "data" / "real_cohort_experiment_eligible.csv.gz")
     if not cohort_path.exists():
         raise FileNotFoundError(f"Cohort file not found: {cohort_path}")
 
