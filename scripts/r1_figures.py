@@ -30,7 +30,7 @@ plt.rcParams.update({"font.family": "Arial", "font.size": 8, "axes.edgecolor": I
 
 def save(fig, out: Path, name: str) -> None:
     png = out / f"{name}.png"
-    fig.savefig(png, dpi=300, bbox_inches="tight", facecolor="white")
+    fig.savefig(png, dpi=300, bbox_inches="tight", pad_inches=0.02, facecolor="white")
     plt.close(fig)
     Image.open(png).convert("RGB").save(out / f"{name}.tif", compression="tiff_lzw", dpi=(300, 300))
 

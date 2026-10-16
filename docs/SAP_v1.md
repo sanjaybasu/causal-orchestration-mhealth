@@ -81,3 +81,6 @@ In Ollama 0.13.1, gpt-oss:20b reasons even when the request sets think to false.
 
 ## Addendum 2 (2026-10-16, before any human rating)
 The three reviewers are physicians: Sanjay Basu (internal medicine; an author), John Morgan (internal medicine), and Christian Moher (family medicine). This replaces the planned mix of a physician, a clinician, and a care manager. Because one reviewer is an author, the analysis also reports ICC among the human reviewers, the human–judge agreement, and the human-rated N − B difference with that reviewer's ratings excluded.
+
+## Addendum 3 (2026-10-16, before any three-arm result is viewed)
+This addendum adds a secondary descriptive comparison: one draft with no critique. Each arm writes and stores its own draft (`draft` in the trace). The primary outcome judge (deepseek-r1:8b, same prompt) scores the role-specialized Nash arm's draft for each patient. We report the Nash final plan minus its own draft, for each metric, with a paired t-test and 95% CI. This contrast measures what the critique and selection steps add to a single generation pass. It is not compute-matched and is not a test of the study hypotheses.

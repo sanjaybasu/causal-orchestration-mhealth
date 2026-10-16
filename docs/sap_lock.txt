@@ -15,3 +15,6 @@ Addendum 2 2026-10-16T20:23:50Z
 5e89fcfa864f364faeee2fcc2aa3701f1401023df722eecf770b92b56a47cd34  /Users/sanjaybasu/waymark-local/notebooks/causal_orchestration_mhealth_submission/revision_1/SAP_v1.md
 04a4baed9340362853fd2c809f6d404abaafb43372cba7ba40c08d5cb4f5a37e  scripts/r1_human_review_analysis.py
 b02c8c17f4db730d81ad29e38e2c289f75a6b2139daf5185151509d3a5e5e57e  scripts/r1_build_human_review.py
+
+Addendum 3 2026-10-16T22:55:19Z
+87368be943676bf36192edb745ce9ff7737155df6b339c68436021f6a39ebeeb  SAP_v1.md
