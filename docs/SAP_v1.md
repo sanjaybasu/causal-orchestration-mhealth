@@ -78,3 +78,6 @@ Report the February two-arm run in S1 Appendix. In that run, the two arms used d
 
 ## Addendum 1 (2026-10-16, before secondary-judge rescoring)
 In Ollama 0.13.1, gpt-oss:20b reasons even when the request sets think to false. Its reasoning counts against the 220-token output limit. For gpt-oss only, the secondary-judge rescoring uses reasoning effort "low" and a 1,024-token output limit. The judge prompt, temperature 0.0, and parsing are unchanged. To support this setting, `OllamaClient.chat` and `evaluate_plan` gained optional `think` and `num_predict` arguments. Their defaults reproduce the earlier behaviour exactly, and the running generation processes loaded the module before this change.
+
+## Addendum 2 (2026-10-16, before any human rating)
+The three reviewers are physicians: Sanjay Basu (internal medicine; an author), John Morgan (internal medicine), and Christian Moher (family medicine). This replaces the planned mix of a physician, a clinician, and a care manager. Because one reviewer is an author, the analysis also reports ICC among the human reviewers, the human–judge agreement, and the human-rated N − B difference with that reviewer's ratings excluded.

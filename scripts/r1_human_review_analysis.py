@@ -59,12 +59,10 @@ def load_ratings(folder: Path) -> pd.DataFrame:
     return h
 
 
-def main() -> None:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--run", required=True)
-    ap.add_argument("--dir", required=True)
-    a = ap.parse_args()
-    h = load_ratings(Path(a.dir))
+AUTHOR_RATER = "basu"
+
+
+def analyze(h: pd.DataFrame, run: str) -> dict:
     res = {"n_raters": int(h.rater.nunique()), "n_patients": int(h.patient_id.nunique())}
 
     res["icc_humans"] = {}
@@ -73,8 +71,8 @@ def main() -> None:
         res["icc_humans"][m] = {"icc2_1": icc2_1(x), "icc2_k": icc2_k(x)}
 
     mean_h = h.groupby(["patient_id", "arm"])[DOMAINS + ["composite"]].mean()
-    prim = load_results(a.run).assign(judge="deepseek-r1:8b")
-    sec_path = ROOT / "results" / f"{a.run}_secondary_judges.csv"
+    prim = load_results(run).assign(judge="deepseek-r1:8b")
+    sec_path = ROOT / "results" / f"{run}_secondary_judges.csv"
     judges = pd.concat([prim, pd.read_csv(sec_path)] if sec_path.exists() else [prim], ignore_index=True)
     res["icc_human_vs_judge"] = {}
     for jdg, g in judges.groupby("judge"):
@@ -104,11 +102,20 @@ def main() -> None:
     res["unsafe_any_rater"] = {"N": int(flag["N"].sum()), "B": int(flag["B"].sum()), "n_patients": len(flag),
                                "mcnemar_p": float(mcnemar(table.to_numpy(), exact=True).pvalue)}
     res["usable_minor_edits_pct"] = h.groupby("arm").usable.mean().mul(100).to_dict()
+    return res
 
+
+def main() -> None:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--run", required=True)
+    ap.add_argument("--dir", required=True)
+    a = ap.parse_args()
+    h = load_ratings(Path(a.dir))
+    res = {"all_reviewers": analyze(h, a.run),
+           "excluding_author": analyze(h[h.rater != AUTHOR_RATER], a.run)}
     out = ROOT / "results" / "r1_analysis" / f"{a.run}_human_review.json"
     out.write_text(json.dumps(res, indent=2))
     print(json.dumps(res, indent=2))
-
 
 if __name__ == "__main__":
     main()
