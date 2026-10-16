@@ -126,6 +126,8 @@ class OllamaClient:
         system_prompt: Optional[str] = None,
         num_predict: int = 512,
         temperature: float = 0.2,
+        seed: Optional[int] = None,
+        think: object = False,
     ) -> str:
         url = f"{self.base_url.rstrip('/')}/api/chat"
         messages = []
@@ -137,12 +139,14 @@ class OllamaClient:
             "model": model,
             "messages": messages,
             "stream": False,
-            "think": False,
+            "think": think,
             "options": {
                 "num_predict": num_predict,
                 "temperature": temperature,
             },
         }
+        if seed is not None:
+            payload["options"]["seed"] = seed
 
         last_error: Optional[Exception] = None
         for attempt in range(1, self.max_retries + 1):
@@ -729,6 +733,8 @@ def evaluate_plan(
     patient_context: str,
     care_plan: str,
     judge_retries: int = 4,
+    num_predict: int = 220,
+    think: object = False,
 ) -> Dict[str, float]:
     base_prompt = (
         "Score this care plan on three axes from 0.0 to 1.0:\n"
@@ -755,8 +761,9 @@ def evaluate_plan(
             model=judge_model,
             user_prompt=base_prompt,
             system_prompt=system_prompt,
-            num_predict=220,
+            num_predict=num_predict,
             temperature=0.0,
+            think=think,
         )
 
         if looks_like_refusal(raw):

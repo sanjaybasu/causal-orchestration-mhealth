@@ -1,0 +1,12 @@
+SAP lock 2026-10-16T14:30:47Z (before confirmatory run; no commit made, hashes only)
+94cafd4bc71e100448b350f867a816dc3840c8996920d8193ba5ce29a601a772  /Users/sanjaybasu/waymark-local/notebooks/causal_orchestration_mhealth_submission/revision_1/SAP_v1.md
+76c8b2391e7a3f11ecb9a3f998ac54f5a04c223c8653c052c7d7bc09c0cabd48  scripts/run_r1_three_arm.py
+ba5cd9390759506a8c2b149d78ee63cc011c0a4ffa9784b6d2e39bf946608963  run_ollama_open_source_experiments.py
+7749a5762937b6c2cb7be754c66762a5e0e339f39f39c1b0182a94df2f2cd8ab  data/r1_patient_ids.txt
+git HEAD (branch pdig-r1, uncommitted changes): 03b1f212f996ea509a2b401623c00070f97136e9
+ollama pinned 0.13.1 on :11435; deepseek-r1:8b 6995872bfe4c; llama3.1:8b 46e0c10c039e
+
+Addendum 1 2026-10-16T19:49:08Z
+3c9b860c937e8d5e47f28a45cf9150afd5fc261831c72bacc596c9d97cd54433  /Users/sanjaybasu/waymark-local/notebooks/causal_orchestration_mhealth_submission/revision_1/SAP_v1.md
+cede844e49178b2f34ede10cbe0adc691b3590a31c71546917133d7f8a4edfbe  run_ollama_open_source_experiments.py
+3df0339577104d055a63d653a7e354e1c30aa6868a3ee0d2ca7a20b678ad1482  scripts/r1_rescore_judges.py
