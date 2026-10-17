@@ -85,6 +85,8 @@ SOURCES = [
      "https://www.211.org", "yes", "Free, confidential, 24/7 referral to food, housing, utility, and other community services; confirmed through multiple United Way pages in search results."),
     ("S36", "Free Tax Return Preparation for Qualifying Taxpayers (VITA/TCE)", "Internal Revenue Service", 2026,
      "https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers", "yes", "Page fetched (free tax preparation; EITC-level incomes; locator)."),
+    ("S37", "Social Need Screening and Intervention (SNS-E), HEDIS measure", "National Committee for Quality Assurance", 2026,
+     "https://www.ncqa.org/blog/social-need-screening-and-intervention-whats-changing/", "yes", "Search-confirmed: share of commercial, Medicaid, and Medicare Advantage members screened with prespecified instruments for food, housing, and transportation needs, and share with a corresponding intervention within 30 days of a positive screen; introduced MY 2023, updated MY 2026."),
 ]
 
 def I(id_, text, q, met, notmet, domain, src, detail, eval_only=False, applies_if=None):
@@ -99,7 +101,7 @@ CATS = OrderedDict()
 CATS["UNIVERSAL"] = dict(kind="universal", label="(all patients)", items=[
     I("U-1", "State a follow-up contact or review interval.",
       "Does the plan include a specific step that schedules a follow-up contact or plan review at a stated interval or date?",
-      "Names a timeframe (e.g., 'call in 2 weeks', 'review plan at 30 days') and who makes the contact.",
+      "Names a specific timeframe or date for the next contact or review (e.g., 'call in 2 weeks', 'review plan at 30 days').",
       "No timeframe, or only vague wording such as 'follow up as needed' or 'regularly'.",
       "efficiency", ["S21", "S02", "S04"], "CMS CCM care plan element 'periodic review'; condition intervals in S02 (monthly until BP control) and S04 (1-3 months after treatment start)."),
     I("U-2", "Give red-flag symptoms and an escalation path.",
@@ -112,6 +114,11 @@ CATS["UNIVERSAL"] = dict(kind="universal", label="(all patients)", items=[
       "Names a medication review/reconciliation task (e.g., 'pharmacist reviews all bottles at next visit', 'brown-bag review').",
       "No medication review step, or only 'take medications as prescribed'.",
       "safety", ["S20", "S21", "S19"], "NPSG.03.06.01; CMS CCM 'review medications and any potential interactions'; JCPP collect/assess steps.", eval_only=True),
+    I("U-4", "Screen for unmet social needs with a standardized tool.",
+      "Does the plan include a specific step to screen the patient for unmet food, housing, and transportation needs with a standardized screening tool, and to act on a positive screen?",
+      "Names a screening step covering at least food, housing, and transportation (e.g., 'complete the AHC HRSN screening tool at the next visit') AND a follow-up action if the screen is positive.",
+      "No screening step; or screening named without the core domains; or screening without any action on a positive result.",
+      "equity", ["S37", "S23", "S22"], "NCQA HEDIS SNS-E (screening for food, housing, and transportation needs with an intervention within 30 days of a positive screen); CMS AHC HRSN screening tool core domains; NASEM 'awareness'."),
 ])
 
 CATS["MEDICATION_ADHERENCE"] = dict(kind="clinical", label="medication non-adherence", items=[
@@ -122,13 +129,13 @@ CATS["MEDICATION_ADHERENCE"] = dict(kind="clinical", label="medication non-adher
       "safety", ["S01", "S05", "S21"], "ADA 1.7 (financial barriers, cost-related nonadherence discussion); HF self-care synopsis (take medications as prescribed); CMS CCM 'oversee medication self-management'."),
     I("MA-2", "Provide a practical adherence aid.",
       "Does the plan include a specific step to set up an adherence aid such as a pill organizer, blister packs, phone reminders, or refill synchronization?",
-      "Names at least one concrete aid and who sets it up.",
+      "Names at least one concrete adherence aid.",
       "No aid, or only 'remember to take your medications'.",
       "efficiency", ["S19", "S21"], "JCPP implement step; CMS CCM medication self-management."),
     I("MA-3", "Address cost or access barriers to medications.",
       "Does the plan include a specific step to lower medication cost or access barriers (generic substitution request, 90-day supply, mail-order/delivery, copay review)?",
-      "Names one concrete cost/access action routed to a pharmacist, prescriber, or plan.",
-      "No cost/access step, or suggests options without a responsible person.",
+      "Names at least one concrete cost or access action.",
+      "No cost or access step.",
       "equity", ["S01", "S02"], "ADA 1.7 financial barriers; 2025 BP guideline take-home 3 (team-based care addresses access to medications)."),
     I("MA-4", "Route side effects and non-adherence back to the prescriber.",
       "Does the plan include a specific step that tells the patient not to stop medications on their own and that reports side effects or non-adherence to the prescriber or pharmacist for regimen review?",
@@ -370,7 +377,7 @@ CATS["SMOKING_CESSATION"] = dict(kind="clinical", label="tobacco use", items=[
       "efficiency", ["S08", "S17"], "USPSTF 2021 behavioral interventions; CDC 1-800-QUIT-NOW."),
     I("SM-3", "Arrange FDA-approved cessation medication.",
       "Does the plan include a specific step to arrange evaluation for nicotine replacement, varenicline, or bupropion with a prescriber or pharmacist?",
-      "Names cessation pharmacotherapy evaluation with a responsible role.",
+      "Names an evaluation for cessation medication.",
       "No medication step for a nonpregnant adult.",
       "safety", ["S08", "S01"], "USPSTF 2021 A (FDA-approved pharmacotherapy for nonpregnant adults); ADA 5.40 combination counseling and pharmacotherapy.", eval_only=True),
 ])
@@ -423,7 +430,7 @@ CATS["TRANSPORTATION"] = dict(kind="social", label="transportation", items=[
 CATS["FOOD_INSECURITY"] = dict(kind="social", label="food insecurity", items=[
     I("FI-1", "Help the patient apply for SNAP.",
       "Does the plan include a specific step to help the patient apply for SNAP through the state agency (or confirm current benefits)?",
-      "Names SNAP application help or benefit check with a responsible role.",
+      "Names help applying for SNAP or a SNAP benefit check.",
       "No SNAP step, or only 'look into food stamps'.",
       "equity", ["S25"], "USDA FNS SNAP eligibility and application."),
     I("FI-2", "Connect to immediate food resources.",
@@ -442,7 +449,7 @@ CATS["FOOD_INSECURITY"] = dict(kind="social", label="food insecurity", items=[
 CATS["FINANCIAL"] = dict(kind="social", label="financial strain", items=[
     I("FIN-1", "Screen for and help enroll in income supports.",
       "Does the plan include a specific step to check eligibility for benefits (e.g., SNAP, LIHEAP) or free tax preparation for credits such as the EITC (VITA)?",
-      "Names at least one benefit or VITA referral with a responsible role.",
+      "Names at least one benefit or VITA referral.",
       "Only 'look for financial help'.",
       "equity", ["S25", "S27", "S36", "S35"], "SNAP; LIHEAP; IRS VITA; 211."),
     I("FIN-2", "Lower out-of-pocket health care costs.",

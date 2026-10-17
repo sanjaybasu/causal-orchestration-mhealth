@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from run_ollama_open_source_experiments import OllamaClient, build_patient_context, generate_initial_plan  # noqa: E402
-from scripts.v2_pipeline import (MODELS, checklist_for, coverage, evaluate_plan_checklist, flag_unsupported,  # noqa: E402
+from scripts.v2_pipeline import (ACTION_BUDGET, MODELS, VERIFIER_SETTINGS, WORD_CAP, checklist_for, coverage, flag_unsupported,  # noqa: E402
                                  load_reqmap, propose_actions, render, solve, verify_coverage)
 
 RULES = ["nash", "sum", "maxmin"]
@@ -75,8 +75,8 @@ def refine_arm(client, ctx, visible):
             break
         prompt = (f"{ctx}\nCurrent care plan:\n{plan}\n\nThe plan does not yet meet these requirements:\n"
                   + "\n".join(f"- {m}" for m in missing)
-                  + "\n\nRevise the plan to meet them with specific actions (who, what, when). Keep the four sections "
-                    "and concise bullets. Do not start, stop, or change medications.")
+                  + f"\n\nRevise the plan to meet them with specific actions (who, what, when). Use at most {ACTION_BUDGET} "
+                    f"action bullets and at most {WORD_CAP} words in total. Do not start, stop, or change medications.")
         plan = client.chat(model=MODELS["renderer"], user_prompt=prompt,
                            system_prompt="You are a senior care manager writing concise action plans.",
                            num_predict=650, temperature=0.2)
@@ -89,7 +89,7 @@ def evaluate_with_verifier(client, items, plan):
         prompt = (f"Care plan:\n{plan}\n\nRequirement: {it['question']}\nCounts as MET: {it['met']}\n"
                   f"Counts as NOT MET: {it['not_met']}\n\nAnswer ONLY yes or no.")
         raw = client.chat(model=MODELS["verifier"], user_prompt=prompt,
-                          system_prompt="You are a strict clinical auditor.", num_predict=5, temperature=0.0)
+                          system_prompt="You are a strict clinical auditor.", temperature=0.0, **VERIFIER_SETTINGS)
         out[it["id"]] = raw.strip().lower().startswith("yes")
     return out
 
@@ -106,11 +106,11 @@ def run_patient(client, row, reqmap):
         for a in propose_actions(client, role, ctx, visible):
             if a.lower() not in {p.lower() for p in pool}:
                 pool.append(a)
-    cover = verify_coverage(client, MODELS["verifier"], visible, pool)
+    cover = verify_coverage(client, MODELS["verifier"], visible, pool, settings=VERIFIER_SETTINGS)
     excluded = flag_unsupported(client, ctx, pool)
 
     arms = {}
-    budget = max(3, math.ceil(len(visible) / 2))  # binding budget so that objectives must trade off
+    budget = ACTION_BUDGET  # one cap for all arms; binds only when requirements exceed it
     for rule in RULES:
         chosen = solve(rule, visible, cover, len(pool), excluded, budget=budget)
         plan = render(client, ctx, [pool[a] for a in chosen])
@@ -118,8 +118,7 @@ def run_patient(client, row, reqmap):
     arms["R"] = {"plan": refine_arm(client, ctx, visible)}
     arms["single"] = {"plan": generate_initial_plan(client, MODELS["renderer"], ctx)}
 
-    for name, arm in arms.items():
-        arm["eval"] = evaluate_plan_checklist(client, items, arm["plan"])
+    for name, arm in arms.items():  # grading is done separately by the panel (scripts/v2_grader.py)
         arm["words"] = len(arm["plan"].split())
     return {"context": ctx, "budget": budget, "items": [it["id"] for it in items],
             "visible": [it["id"] for it in visible], "pool": pool, "cover": cover, "excluded": excluded,
@@ -160,8 +159,7 @@ def main():
         with open(out, "a") as f:
             f.write(json.dumps(rec) + "\n")
             f.flush(); os.fsync(f.fileno())
-        cov = {k: round(sum(v["eval"].values()) / max(len(v["eval"]), 1), 2) for k, v in rec["arms"].items()}
-        print(idx, rec["seconds"], cov, flush=True)
+        print(idx, rec["seconds"], {k: v.get("selection_coverage") or v["words"] for k, v in rec["arms"].items()}, flush=True)
 
 
 if __name__ == "__main__":

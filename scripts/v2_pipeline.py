@@ -34,12 +34,14 @@ MODELS = {
     "proposer_safety": "deepseek-r1:8b",
     "proposer_efficiency": "llama3.1:8b",
     "proposer_equity": "llama3.1:8b",
-    "verifier": "llama3.1:8b",
+    "verifier": "gpt-oss:20b",
     "renderer": "llama3.1:8b",
     "evaluator": "gpt-oss:20b",
 }
 EVALUATOR_SETTINGS = {"num_predict": 1024, "think": "low"}
-ACTION_BUDGET = 10
+VERIFIER_SETTINGS = {"num_predict": 1024, "think": "low"}  # gpt-oss reasons even with think=false
+ACTION_BUDGET = 8  # same cap for every arm (actions); refine is told the same cap
+WORD_CAP = 250
 EPS = 0.05
 
 ROLE_FOCUS = {
@@ -113,7 +115,7 @@ def flag_unsupported(client: OllamaClient, ctx: str, actions: List[str]) -> List
               "Which numbered actions are unsafe, clinically inappropriate for this profile, or change a "
               "medication without a prescriber? Return ONLY a JSON list of numbers, or [] if none.")
     raw = client.chat(model=MODELS["verifier"], user_prompt=prompt,
-                      system_prompt="You are a strict clinical safety auditor.", num_predict=60, temperature=0.0)
+                      system_prompt="You are a strict clinical safety auditor.", temperature=0.0, **VERIFIER_SETTINGS)
     return sorted({int(x) - 1 for x in _json_list(raw) if str(x).isdigit() and 0 < int(x) <= len(actions)})
 
 
@@ -211,13 +213,9 @@ def coverage(items: List[dict], cover: Dict[str, List[int]], chosen: List[int]) 
 
 # ---------------------------------------------------------------- rendering
 def render(client: OllamaClient, ctx: str, actions: List[str]) -> str:
-    listed = "\n".join(f"- {a}" for a in actions)
-    prompt = (f"{ctx}\nWrite the care plan using ONLY these actions, each kept with its meaning intact:\n{listed}\n\n"
-              "Sections: 1) Problem List 2) Actionable Clinical Actions 3) SDOH / Access Actions "
-              "4) Follow-up and Monitoring. Use concise bullets. Add no new actions.")
-    return client.chat(model=MODELS["renderer"], user_prompt=prompt,
-                       system_prompt="You are a senior care manager writing concise action plans.",
-                       num_predict=600, temperature=0.2)
+    """Deterministic rendering: the chosen actions appear verbatim, so nothing is lost after selection."""
+    del client, ctx
+    return "Care plan actions:\n" + "\n".join(f"- {a}" for a in actions)
 
 
 # ---------------------------------------------------------------- evaluation
