@@ -84,3 +84,6 @@ The three reviewers are physicians: Sanjay Basu (internal medicine; an author), 
 
 ## Addendum 3 (2026-10-16, before any three-arm result is viewed)
 This addendum adds a secondary descriptive comparison: one draft with no critique. Each arm writes and stores its own draft (`draft` in the trace). The primary outcome judge (deepseek-r1:8b, same prompt) scores the role-specialized Nash arm's draft for each patient. We report the Nash final plan minus its own draft, for each metric, with a paired t-test and 95% CI. This contrast measures what the critique and selection steps add to a single generation pass. It is not compute-matched and is not a test of the study hypotheses.
+
+## Addendum 3a (2026-10-16, before any three-arm result is viewed)
+The trace field `draft` holds the round-2 synthesis, because the runner reassigns `draft` each round. It does not hold the initial single-pass draft, and that text was not stored. For the Addendum 3 comparison, the generator (llama3.1:8b, the same draft prompt, temperature 0.2) therefore writes one new single-pass draft for each of the 200 patients. The primary outcome judge (deepseek-r1:8b, same prompt) scores it. The contrast is the role-specialized Nash final plan minus this single-pass draft, with a paired t-test and 95% CI. It remains descriptive and is not compute-matched.

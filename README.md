@@ -75,3 +75,27 @@ Copy `.env.example` to `.env` and supply your own keys. The `.env` file is liste
 ## Cohort derivation
 
 `scripts/build_real_cohort.py` documents the full cohort derivation logic from seven linked source tables. The source tables are PHI-protected and not included in this repository. The derived de-identified cohort files (`data/real_cohort_analytic.parquet`, `data/real_cohort_experiment_eligible.csv.gz`) are the inputs to all analyses.
+
+## PLOS Digital Health revision (tag pdig-r1-submission)
+
+The revised manuscript reports a compute-matched three-arm experiment. The statistical analysis plan, with its addenda, is in `docs/SAP_v1.md`; `docs/sap_lock.txt` gives the file hashes recorded before each stage. All model calls use Ollama 0.13.1 (`--ollama-base-url`, default `http://127.0.0.1:11435`) with `deepseek-r1:8b` (digest 6995872bfe4c), `llama3.1:8b` (digest 46e0c10c039e), and `gpt-oss:20b`.
+
+Run order: `scripts/run_r1_three_arm.py` → `scripts/r1_rescore_judges.py` → `scripts/r1_single_pass.py` → analysis scripts. `scripts/r1_finalize.sh` runs the post-generation steps in sequence.
+
+| Manuscript item | Script | Output (in `results/`) |
+|---|---|---|
+| Table 1 (cohort and sample) | `scripts/r1_table1.py` | `r1_analysis/table1.json` (needs the protected cohort file) |
+| S1 Appendix Table A4 (cohort flow) | `scripts/build_real_cohort.py` | build log (needs the protected source tables) |
+| Table 2 (model calls per arm) | `scripts/run_r1_three_arm.py` (`calls` per row) | `r1_three_arm_n200_shard*of3_results.csv` columns `n_*_calls` |
+| Arm means, paired differences, higher/same/lower counts, Holm-adjusted p-values (Results; Tables 3–4) | `scripts/r1_paired_analyses.py --three-arm r1_three_arm_n200` | `r1_analysis/r1_three_arm_n200_paired_analyses.json` |
+| Fig 1 (pipeline) | `scripts/r1_figures.py` (`fig1`) | `Fig1.tif` |
+| Fig 2 (distribution of paired differences) | `scripts/r1_figures.py --run r1_three_arm_n200` | `Fig2.tif` |
+| Fig 3 and S1 Appendix A9 (subgroups) | `scripts/r1_paired_analyses.py`; `scripts/r1_figures.py` | `..._paired_analyses.json` (`N-B.subgroups`); `Fig3.tif` |
+| S1 Appendix A8 (judge agreement) | `scripts/r1_rescore_judges.py --analyze` | `r1_analysis/r1_three_arm_n200_judge_agreement.json` |
+| Blinded physician review (Results; A8) | `scripts/r1_build_human_review.py`; `scripts/r1_human_review_analysis.py` | `r1_analysis/r1_three_arm_n200_human_review.json` |
+| Single-pass reference (SAP Addendum 3a) | `scripts/r1_single_pass.py` | `r1_analysis/r1_three_arm_n200_single_pass.json` |
+| S1 Appendix A5 (prompts) | `scripts/r1_dump_prompts.py` | `r1_analysis/prompts_verbatim.md` |
+| S1 Appendix A10 (two-arm experiment) | `scripts/r1_paired_analyses.py --feb` | `r1_analysis/feb_paired_analyses.json` |
+| S2 Appendix (worked examples) | `scripts/r1_select_examples.py` | local draft only (contains patient context) |
+
+The public score file (S1 Data) has random study numbers in place of patient identifiers. With it, the paired, subgroup, judge-agreement, human-review, and single-pass analyses can be re-run. Table 1, Table A4, and the S2 examples need the protected data and are not reproducible from public files.
