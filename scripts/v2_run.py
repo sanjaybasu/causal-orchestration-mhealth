@@ -11,6 +11,7 @@ plan, selection-time coverage, and evaluator verdicts on all checklist items.
 
 import argparse
 import json
+import math
 import os
 import random
 import sys
@@ -109,8 +110,9 @@ def run_patient(client, row, reqmap):
     excluded = flag_unsupported(client, ctx, pool)
 
     arms = {}
+    budget = max(3, math.ceil(len(visible) / 2))  # binding budget so that objectives must trade off
     for rule in RULES:
-        chosen = solve(rule, visible, cover, len(pool), excluded)
+        chosen = solve(rule, visible, cover, len(pool), excluded, budget=budget)
         plan = render(client, ctx, [pool[a] for a in chosen])
         arms[f"S-{rule}"] = {"chosen": chosen, "selection_coverage": coverage(visible, cover, chosen), "plan": plan}
     arms["R"] = {"plan": refine_arm(client, ctx, visible)}
@@ -119,7 +121,7 @@ def run_patient(client, row, reqmap):
     for name, arm in arms.items():
         arm["eval"] = evaluate_plan_checklist(client, items, arm["plan"])
         arm["words"] = len(arm["plan"].split())
-    return {"context": ctx, "items": [it["id"] for it in items],
+    return {"context": ctx, "budget": budget, "items": [it["id"] for it in items],
             "visible": [it["id"] for it in visible], "pool": pool, "cover": cover, "excluded": excluded,
             "arms": arms, "seconds": round(time.time() - t0, 1)}
 
