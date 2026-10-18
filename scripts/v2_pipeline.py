@@ -119,6 +119,39 @@ def flag_unsupported(client: OllamaClient, ctx: str, actions: List[str]) -> List
     return sorted({int(x) - 1 for x in _json_list(raw) if str(x).isdigit() and 0 < int(x) <= len(actions)})
 
 
+def confirm_pairs(client: OllamaClient, items: List[dict], actions: List[str],
+                  shortlist: Dict[str, List[int]]) -> Dict[str, List[int]]:
+    """Re-check each shortlisted (item, action) pair with the same per-item question used for grading."""
+    byid = {it["id"]: it for it in items}
+    out = {}
+    for iid, acts in shortlist.items():
+        it = byid[iid]
+        keep = []
+        for a in acts:
+            prompt = (f"Care plan:\n- {actions[a]}\n\nRequirement: {it['question']}\nCounts as MET: {it['met']}\n"
+                      f"Counts as NOT MET: {it['not_met']}\n\nAnswer ONLY yes or no.")
+            raw = client.chat(model=MODELS["verifier"], user_prompt=prompt, system_prompt="You are a strict clinical auditor.",
+                              temperature=0.0, **VERIFIER_SETTINGS)
+            if raw.strip().lower().lstrip("*\"' ").startswith("yes"):
+                keep.append(a)
+        out[iid] = keep
+    return out
+
+
+def gap_fill(client: OllamaClient, ctx: str, missing: List[dict]) -> List[str]:
+    """One targeted action per requirement that no proposed action meets."""
+    new = []
+    for it in missing:
+        prompt = (f"{ctx}\nWrite ONE specific care-plan action (who does what by when) that meets this requirement.\n"
+                  f"Requirement: {it['question']}\nCounts as MET: {it['met']}\n"
+                  "Do not start, stop, or change medications. Return only the action sentence.")
+        a = client.chat(model=MODELS["proposer_efficiency"], user_prompt=prompt,
+                        system_prompt="You are a care management planner.", num_predict=120, temperature=0.2).strip()
+        if a:
+            new.append(a.splitlines()[0].strip("-* "))
+    return new
+
+
 # ---------------------------------------------------------------- solver
 def solve(rule: str, items: List[dict], cover: Dict[str, List[int]], n_actions: int,
           excluded: List[int], budget: int = ACTION_BUDGET) -> List[int]:
@@ -129,7 +162,7 @@ def solve(rule: str, items: List[dict], cover: Dict[str, List[int]], n_actions: 
       nash   : maximize sum_k log(EPS + c_k)  (maximum Nash welfare; exact via count indicators)
       sum    : maximize sum_k c_k
       maxmin : maximize t subject to t <= c_k (ties broken by total coverage)
-    Ties prefer fewer actions (small penalty). Domains with no visible items are skipped.
+    Ties prefer a second confirmed action per item (robustness). Domains with no visible items are skipped.
     """
     doms = [k for k in DOMAINS if any(it["domain"] == k for it in items)]
     I = len(items)
@@ -143,10 +176,11 @@ def solve(rule: str, items: List[dict], cover: Dict[str, List[int]], n_actions: 
             zidx[k] = list(range(zoff, zoff + nk[k] + 1))
             zoff += nk[k] + 1
     tvar = zoff if rule == "maxmin" else None
-    nvar = zoff + (1 if rule == "maxmin" else 0)
+    roff = zoff + (1 if rule == "maxmin" else 0)  # r_i: item met by a second chosen action (robustness)
+    nvar = roff + I
 
     c = np.zeros(nvar)
-    c[:A] = 1e-3  # prefer fewer actions
+    c[roff:roff + I] = -1e-3  # small reward for a second confirmed action on the same item
     if rule == "nash":
         for k in doms:
             for cnt, j in enumerate(zidx[k]):
@@ -162,11 +196,13 @@ def solve(rule: str, items: List[dict], cover: Dict[str, List[int]], n_actions: 
         raise ValueError(rule)
 
     rows, lo, hi = [], [], []
-    # coverage links: y_i - sum_{a in cover_i} x_a <= 0
+    # coverage links: y_i + r_i - sum_{a in cover_i} x_a <= 0  (r_i needs two chosen actions; r_i <= y_i)
     for i, it in enumerate(items):
-        r = np.zeros(nvar); r[A + i] = 1
+        r = np.zeros(nvar); r[A + i] = 1; r[roff + i] = 1
         for a in cover.get(it["id"], []):
             r[a] = -1
+        rows.append(r); lo.append(-np.inf); hi.append(0)
+        r = np.zeros(nvar); r[roff + i] = 1; r[A + i] = -1
         rows.append(r); lo.append(-np.inf); hi.append(0)
     # budget
     r = np.zeros(nvar); r[:A] = 1; rows.append(r); lo.append(0); hi.append(budget)

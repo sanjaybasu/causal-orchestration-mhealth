@@ -24,7 +24,7 @@ class Recorder:
     def __init__(self):
         self.calls = []
 
-    def chat(self, model, user_prompt, system_prompt=None, num_predict=512, temperature=0.2, seed=None):
+    def chat(self, model, user_prompt, system_prompt=None, num_predict=512, temperature=0.2, seed=None, think=False):
         self.calls.append(dict(model=model, system=system_prompt, user=user_prompt,
                                num_predict=num_predict, temperature=temperature, seed=seed))
         return '{"safety":0.5,"efficiency":0.5,"equity":0.5,"composite":0.5}'

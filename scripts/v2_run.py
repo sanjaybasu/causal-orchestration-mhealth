@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from run_ollama_open_source_experiments import OllamaClient, build_patient_context, generate_initial_plan  # noqa: E402
-from scripts.v2_pipeline import (ACTION_BUDGET, MODELS, VERIFIER_SETTINGS, WORD_CAP, checklist_for, coverage, flag_unsupported,  # noqa: E402
+from scripts.v2_pipeline import (ACTION_BUDGET, MODELS, VERIFIER_SETTINGS, WORD_CAP, checklist_for, confirm_pairs, coverage, flag_unsupported, gap_fill,  # noqa: E402
                                  load_reqmap, propose_actions, render, solve, verify_coverage)
 
 RULES = ["nash", "sum", "maxmin"]
@@ -106,7 +106,13 @@ def run_patient(client, row, reqmap):
         for a in propose_actions(client, role, ctx, visible):
             if a.lower() not in {p.lower() for p in pool}:
                 pool.append(a)
-    cover = verify_coverage(client, MODELS["verifier"], visible, pool, settings=VERIFIER_SETTINGS)
+    shortlist = verify_coverage(client, MODELS["verifier"], visible, pool, settings=VERIFIER_SETTINGS)
+    cover = confirm_pairs(client, visible, pool, shortlist)
+    missing = [it for it in visible if not cover.get(it["id"])]
+    for it, a in zip(missing, gap_fill(client, ctx, missing)):
+        pool.append(a)
+        got = confirm_pairs(client, [it], pool, {it["id"]: [len(pool) - 1]})
+        cover[it["id"]] = cover.get(it["id"], []) + got[it["id"]]
     excluded = flag_unsupported(client, ctx, pool)
 
     arms = {}
@@ -120,7 +126,7 @@ def run_patient(client, row, reqmap):
 
     for name, arm in arms.items():  # grading is done separately by the panel (scripts/v2_grader.py)
         arm["words"] = len(arm["plan"].split())
-    return {"context": ctx, "budget": budget, "items": [it["id"] for it in items],
+    return {"context": ctx, "budget": budget, "shortlist": shortlist, "n_gap_filled": len(missing), "items": [it["id"] for it in items],
             "visible": [it["id"] for it in visible], "pool": pool, "cover": cover, "excluded": excluded,
             "arms": arms, "seconds": round(time.time() - t0, 1)}
 
