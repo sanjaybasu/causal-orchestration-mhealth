@@ -28,6 +28,20 @@ from scripts.v2_pipeline import (ACTION_BUDGET, MODELS, VERIFIER_SETTINGS, WORD_
                                  load_reqmap, propose_actions, render, solve, verify_coverage)
 
 RULES = ["nash", "sum", "maxmin"]
+
+
+class CountingClient(OllamaClient):
+    """Tallies calls and approximate tokens (words x 1.3) per phase label."""
+    phase = "other"
+    tally: dict = {}
+
+    def chat(self, *args, **kw):
+        out = super().chat(*args, **kw)
+        prompt = kw.get("user_prompt", args[1] if len(args) > 1 else "") + (kw.get("system_prompt") or "")
+        t = self.tally.setdefault(self.phase, {"calls": 0, "approx_tokens": 0})
+        t["calls"] += 1
+        t["approx_tokens"] += int(1.3 * (len(prompt.split()) + len(out.split())))
+        return out
 REFINE_ROUNDS = 2
 
 
@@ -101,6 +115,8 @@ def run_patient(client, row, reqmap):
     calls = {"llm": 0}
     t0 = time.time()
 
+    client.tally = {}
+    client.phase = "selection_shared"
     pool = []
     for role in ["safety", "efficiency", "equity"]:
         for a in propose_actions(client, role, ctx, visible):
@@ -121,12 +137,14 @@ def run_patient(client, row, reqmap):
         chosen = solve(rule, visible, cover, len(pool), excluded, budget=budget)
         plan = render(client, ctx, [pool[a] for a in chosen])
         arms[f"S-{rule}"] = {"chosen": chosen, "selection_coverage": coverage(visible, cover, chosen), "plan": plan}
+    client.phase = "R"
     arms["R"] = {"plan": refine_arm(client, ctx, visible)}
+    client.phase = "single"
     arms["single"] = {"plan": generate_initial_plan(client, MODELS["renderer"], ctx)}
 
     for name, arm in arms.items():  # grading is done separately by the panel (scripts/v2_grader.py)
         arm["words"] = len(arm["plan"].split())
-    return {"context": ctx, "budget": budget, "shortlist": shortlist, "n_gap_filled": len(missing), "items": [it["id"] for it in items],
+    return {"compute": client.tally, "context": ctx, "budget": budget, "shortlist": shortlist, "n_gap_filled": len(missing), "items": [it["id"] for it in items],
             "visible": [it["id"] for it in visible], "pool": pool, "cover": cover, "excluded": excluded,
             "arms": arms, "seconds": round(time.time() - t0, 1)}
 
@@ -145,7 +163,7 @@ def main():
     done = set()
     if out.exists():
         done = {json.loads(l)["patient_id"] for l in out.read_text().splitlines() if l.strip()}
-    client = OllamaClient(base_url=a.ollama_base_url, timeout_seconds=300)
+    client = CountingClient(base_url=a.ollama_base_url, timeout_seconds=300)
     reqmap = load_reqmap()
     pts = patient_set(a.set)
     if a.limit:

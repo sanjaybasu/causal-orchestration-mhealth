@@ -42,23 +42,23 @@ def judge(client: OllamaClient, model: str, settings: dict, it: dict, plan: str)
     return raw.strip().lower().lstrip("*\"' ").startswith("yes")
 
 
-def records(run: str):
-    for f in sorted((ROOT / "results").glob(f"{run}_none_shard*.jsonl")):
+def records(run: str, variant: str = "none"):
+    for f in sorted((ROOT / "results").glob(f"{run}_{variant}_shard*.jsonl")):
         for line in f.read_text().splitlines():
             if line.strip():
                 yield json.loads(line)
 
 
-def grade(run: str) -> None:
+def grade(run: str, variant: str = "none") -> None:
     rm = load_reqmap()
     byid = {i["id"]: i for c in rm["categories"].values() for i in c["items"]}
-    out = ROOT / "results" / f"{run}_panel.jsonl"
+    out = ROOT / "results" / (f"{run}_panel.jsonl" if variant == "none" else f"{run}_{variant}_panel.jsonl")
     done = set()
     if out.exists():
         done = {(r["patient_id"], r["arm"], r["item"]) for r in map(json.loads, out.read_text().splitlines())}
     clients = {k: OllamaClient(base_url=u, timeout_seconds=600) for k, (u, _, _) in PANEL.items()}
     with open(out, "a") as f:
-        for rec in records(run):
+        for rec in records(run, variant):
             for arm, a in rec["arms"].items():
                 for iid in rec["items"]:
                     key = (rec["patient_id"], arm, iid)
@@ -151,9 +151,10 @@ def main():
     ap.add_argument("--agreement", action="store_true")
     ap.add_argument("--calibration-sheet")
     ap.add_argument("--n", type=int, default=200)
+    ap.add_argument("--variant", default="none")
     a = ap.parse_args()
     if a.grade:
-        grade(a.run)
+        grade(a.run, a.variant)
     if a.agreement:
         print(json.dumps({k: v for k, v in agreement(a.run).items() if k != "per_item"}, indent=2))
     if a.calibration_sheet:
