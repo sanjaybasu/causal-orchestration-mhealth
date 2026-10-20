@@ -14,10 +14,9 @@ done
 echo "generation: none $(count none)/200, race $(count race)/165 at $(date)" >> results/v2_final_grade.log
 for job in "v2_final none" "v1final none" "v2_final race"; do
   set -- ${=job}
-  for attempt in 1 2 3 4 5 6; do
+  until python3 scripts/v2_grader.py --run $1 --variant $2 --check >> results/v2_final_grade.log 2>&1; do   # exits 0 only when nothing is left
     for i in 0 1 2 3; do (python3 scripts/v2_grader.py --run $1 --variant $2 --grade --shard $i/4 >> results/v2_final_grade.log 2>&1) & done
-    wait
-    python3 scripts/v2_grader.py --run $1 --variant $2 --grade >> results/v2_final_grade.log 2>&1 && break   # verifying pass: exit 0 only if nothing left
+    wait; sleep 60
   done
 done
 python3 scripts/v2_grader.py --run v2_final --agreement > results/v2_final_agreement.log 2>&1

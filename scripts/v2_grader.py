@@ -26,8 +26,8 @@ from scripts.v2_pipeline import load_reqmap  # noqa: E402
 PANEL = {
     # name: (base_url, model, chat settings)
     "gptoss20b": ("http://127.0.0.1:11435", "gpt-oss:20b", {"num_predict": 2048, "think": "low"}),
-    "qwen36_35b": ("http://127.0.0.1:11434", "batiai/qwen3.6-35b:iq4", {"num_predict": 20, "think": False}),
-    "medgemma27b": ("http://127.0.0.1:11434", "alibayram/medgemma:27b", {"num_predict": 20, "think": False}),
+    "qwen36_35b": ("http://127.0.0.1:11436", "batiai/qwen3.6-35b:iq4", {"num_predict": 20, "think": False}),
+    "medgemma27b": ("http://127.0.0.1:11436", "alibayram/medgemma:27b", {"num_predict": 20, "think": False}),
 }
 
 
@@ -81,6 +81,15 @@ def grade(run: str, variant: str = "none", shard: str = "0/1") -> None:
     print(f"GRADE PASS DONE skipped={skipped}", flush=True)
     if skipped:
         sys.exit(3)
+
+
+def remaining(run: str, variant: str = "none") -> int:
+    out = ROOT / "results" / (f"{run}_panel.jsonl" if variant == "none" else f"{run}_{variant}_panel.jsonl")
+    done = set()
+    if out.exists():
+        done = {(r["patient_id"], r["arm"], r["item"]) for r in map(json.loads, out.read_text().splitlines())}
+    return sum((rec["patient_id"], arm, iid) not in done
+               for rec in records(run, variant) for arm in rec["arms"] for iid in rec["items"])
 
 
 def cohen(a, b):
@@ -165,7 +174,12 @@ def main():
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--variant", default="none")
     ap.add_argument("--shard", default="0/1")
+    ap.add_argument("--check", action="store_true", help="exit 0 if no decisions remain, else 3")
     a = ap.parse_args()
+    if a.check:
+        n = remaining(a.run, a.variant)
+        print(f"{a.run} {a.variant}: {n} decisions remaining", flush=True)
+        sys.exit(0 if n == 0 else 3)
     if a.grade:
         grade(a.run, a.variant, a.shard)
     if a.agreement:
