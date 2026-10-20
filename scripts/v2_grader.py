@@ -58,6 +58,7 @@ def grade(run: str, variant: str = "none", shard: str = "0/1") -> None:
     if out.exists():
         done = {(r["patient_id"], r["arm"], r["item"]) for r in map(json.loads, out.read_text().splitlines())}
     clients = {k: OllamaClient(base_url=u, timeout_seconds=600) for k, (u, _, _) in PANEL.items()}
+    skipped = 0
     with open(out, "a") as f:
         for k, rec in enumerate(records(run, variant)):
             if k % sn != si:
@@ -67,11 +68,19 @@ def grade(run: str, variant: str = "none", shard: str = "0/1") -> None:
                     key = (rec["patient_id"], arm, iid)
                     if key in done:
                         continue
-                    v = {k: judge(clients[k], m, s, byid[iid], a["plan"]) for k, (_, m, s) in PANEL.items()}
+                    try:
+                        v = {k: judge(clients[k], m, s, byid[iid], a["plan"]) for k, (_, m, s) in PANEL.items()}
+                    except Exception as exc:  # noqa: BLE001  (e.g. timeout after laptop sleep); retried next pass
+                        skipped += 1
+                        print(f"SKIP {rec['patient_id'][-6:]} {arm} {iid}: {str(exc)[:80]}", flush=True)
+                        continue
                     f.write(json.dumps({"patient_id": rec["patient_id"], "arm": arm, "item": iid,
                                         "eval_only": byid[iid]["eval_only"], "domain": byid[iid]["domain"],
                                         "votes": v, "majority": sum(v.values()) * 2 > len(v)}) + "\n")
                     f.flush()
+    print(f"GRADE PASS DONE skipped={skipped}", flush=True)
+    if skipped:
+        sys.exit(3)
 
 
 def cohen(a, b):
