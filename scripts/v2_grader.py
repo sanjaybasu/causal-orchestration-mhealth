@@ -25,7 +25,7 @@ from scripts.v2_pipeline import load_reqmap  # noqa: E402
 
 PANEL = {
     # name: (base_url, model, chat settings)
-    "gptoss20b": ("http://127.0.0.1:11435", "gpt-oss:20b", {"num_predict": 1024, "think": "low"}),
+    "gptoss20b": ("http://127.0.0.1:11435", "gpt-oss:20b", {"num_predict": 2048, "think": "low"}),
     "qwen36_35b": ("http://127.0.0.1:11434", "batiai/qwen3.6-35b:iq4", {"num_predict": 20, "think": False}),
     "medgemma27b": ("http://127.0.0.1:11434", "alibayram/medgemma:27b", {"num_predict": 20, "think": False}),
 }
@@ -49,7 +49,8 @@ def records(run: str, variant: str = "none"):
                 yield json.loads(line)
 
 
-def grade(run: str, variant: str = "none") -> None:
+def grade(run: str, variant: str = "none", shard: str = "0/1") -> None:
+    si, sn = map(int, shard.split("/"))
     rm = load_reqmap()
     byid = {i["id"]: i for c in rm["categories"].values() for i in c["items"]}
     out = ROOT / "results" / (f"{run}_panel.jsonl" if variant == "none" else f"{run}_{variant}_panel.jsonl")
@@ -58,7 +59,9 @@ def grade(run: str, variant: str = "none") -> None:
         done = {(r["patient_id"], r["arm"], r["item"]) for r in map(json.loads, out.read_text().splitlines())}
     clients = {k: OllamaClient(base_url=u, timeout_seconds=600) for k, (u, _, _) in PANEL.items()}
     with open(out, "a") as f:
-        for rec in records(run, variant):
+        for k, rec in enumerate(records(run, variant)):
+            if k % sn != si:
+                continue
             for arm, a in rec["arms"].items():
                 for iid in rec["items"]:
                     key = (rec["patient_id"], arm, iid)
@@ -152,9 +155,10 @@ def main():
     ap.add_argument("--calibration-sheet")
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--variant", default="none")
+    ap.add_argument("--shard", default="0/1")
     a = ap.parse_args()
     if a.grade:
-        grade(a.run, a.variant)
+        grade(a.run, a.variant, a.shard)
     if a.agreement:
         print(json.dumps({k: v for k, v in agreement(a.run).items() if k != "per_item"}, indent=2))
     if a.calibration_sheet:
