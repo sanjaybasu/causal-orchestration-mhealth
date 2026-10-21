@@ -8,3 +8,4 @@ Every step appends finished results to `results/` and skips work already saved, 
 3. Restart the finisher:
    `cd ~/waymark-local/packaging/causal_orchestration_mhealth && tmux new-session -d -s v2robust "caffeinate -dims zsh scripts/v2_final_robust.sh"`
 4. Check progress: `python3 scripts/v2_progress.py`. It is finished when the output shows `done True`.
+5. Compute-matched refine arm (runs after step 3 finishes): `tmux new-session -d -s v2matched "caffeinate -dims zsh scripts/v2_matched_queue.sh"`. It is finished when `results/v2_matchedR_grade.log` contains `matched done`.
